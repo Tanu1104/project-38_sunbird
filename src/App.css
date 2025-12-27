@@ -1,24 +1,368 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.container {
+  height: 100vh;
+  width: 100vw;
+  background: #000;
+  overflow: hidden;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+/* Video Container */
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.video-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  object-position: center center;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.6) 20%,
+    rgba(0, 0, 0, 0.4) 40%,
+    rgba(0, 0, 0, 0.6) 60%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  pointer-events: none;
+}
+
+.video-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 255, 0, 0.1) 0%,
+    rgba(0, 255, 0, 0.05) 20%,
+    transparent 60%
+  );
+  filter: blur(80px);
+  pointer-events: none;
+  animation: videoGlow 4s infinite alternate;
+}
+
+/* Loading Animation */
+.loading-animation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 40px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid rgba(0, 255, 0, 0.3);
+  border-top-color: #00ff00;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
 }
 
-@keyframes logo-spin {
+.loading-text {
+  color: #00ff00;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Content Overlay */
+.content-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+/* Title Section */
+.title-section {
+  text-align: center;
+  margin-top: 15vh;
+  animation: fadeInUp 1s ease-out;
+}
+
+.main-title {
+  font-size: 6rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #ffffff 30%, #00ff00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  text-shadow: 0 0 50px rgba(0, 255, 0, 0.5);
+  line-height: 1.1;
+}
+
+.subtitle {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #aaa;
+  margin: 20px 0 0 0;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+}
+
+.title-line {
+  width: 300px;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    #00ff00 50%,
+    transparent 100%);
+  margin: 30px auto;
+  filter: blur(1px);
+}
+
+/* Controls Section */
+.controls-section {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  text-align: right;
+  animation: fadeInUp 1s ease-out 0.5s both;
+  z-index: 30;
+}
+
+.replay-button {
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  padding: 20px 40px;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 2px;
+}
+
+.replay-button:hover {
+  background: rgba(0, 255, 0, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 
+    0 15px 40px rgba(0, 255, 0, 0.3),
+    0 0 0 1px rgba(0, 255, 0, 0.5);
+}
+
+.replay-button:hover .button-icon svg {
+  animation: spin 1s linear infinite;
+}
+
+.button-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-icon svg {
+  width: 20px;
+  height: 20px;
+  color: #00ff00;
+}
+
+.button-glow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(0, 255, 0, 0.3) 50%,
+    transparent 100%;
+  transition: left 0.6s ease;
+}
+
+.replay-button:hover .button-glow {
+  left: 100%;
+}
+
+.instructions {
+  margin-bottom: 15px;
+  color: #999;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-align: right;
+}
+
+/* Razer UI */
+.razer-ui {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.nav-logo {
+  color: #00ff00;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 30px;
+  color: #ccc;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nav-menu span {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.nav-menu span:hover {
+  color: #00ff00;
+}
+
+.nav-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ccc;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.nav-search svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Video Controls */
+.video-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px 15px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  z-index: 20;
+}
+
+.video-control-btn {
+  background: transparent;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.video-control-btn:hover {
+  color: #00ff00;
+  background: rgba(0, 255, 0, 0.1);
+}
+
+.video-progress {
+  width: 100px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  width: 30%;
+  height: 100%;
+  background: #00ff00;
+  border-radius: 2px;
+  animation: progressLoop 5s linear infinite;
+}
+
+/* Animations */
+@keyframes videoGlow {
+  0% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
   from {
     transform: rotate(0deg);
   }
@@ -27,16 +371,92 @@
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@keyframes progressLoop {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
   }
 }
 
-.card {
-  padding: 2em;
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .main-title {
+    font-size: 4rem;
+  }
+  
+  .nav-menu {
+    gap: 20px;
+    font-size: 11px;
+  }
+  
+  .controls-section {
+    bottom: 30px;
+    right: 30px;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    letter-spacing: 4px;
+  }
+  
+  .nav-menu {
+    display: none;
+  }
+  
+  .title-line {
+    width: 200px;
+  }
+  
+  .replay-button {
+    padding: 16px 30px;
+    font-size: 12px;
+  }
+  
+  .controls-section {
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .instructions {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-title {
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+  
+  .subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+  }
+  
+  .nav-bar {
+    padding: 15px 20px;
+  }
+  
+  .title-section {
+    margin-top: 25vh;
+  }
+  
+  .controls-section {
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  .replay-button {
+    padding: 14px 25px;
+    font-size: 11px;
+  }
 }
