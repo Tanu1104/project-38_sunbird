@@ -1,101 +1,157 @@
-import { useState, useRef, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import './App.css'
+import React from "react";
+import { categories } from "./data/categories";
+import { products } from "./data/products";
+import "./App.css";
 
-function App() {
-  const [isPlaying, setIsPlaying] = useState(true);
-  
-  // Refs for both videos
-  const heroVideoRef = useRef(null);
-  const secondaryVideoRef = useRef(null);
-
-  // Sync both videos with the play/pause state
-  useEffect(() => {
-    const videos = [heroVideoRef.current, secondaryVideoRef.current];
-    videos.forEach(video => {
-      if (video) {
-        isPlaying ? video.play().catch(() => {}) : video.pause();
-      }
-    });
-  }, [isPlaying]);
+const CategoryCard = ({ cat }) => {
+  const [isLiked, setIsLiked] = React.useState(false);
 
   return (
-    <div className="min-h-screen bg-black text-white font-sans selection:bg-[#44d62c] selection:text-black overflow-x-hidden">
-      
-      {/* 1. Navigation */}
-      <nav className="flex justify-center gap-8 py-6 text-[11px] uppercase tracking-[0.2em] text-gray-400 border-b border-white/10 sticky top-0 bg-black/80 backdrop-blur-md z-30">
-        <span className="hover:text-white cursor-pointer transition-colors">Store</span>
-        <span className="hover:text-white cursor-pointer transition-colors">PC</span>
-        <span className="hover:text-white cursor-pointer transition-colors">Console</span>
-        <span className="hover:text-[#44d62c] cursor-pointer transition-colors font-bold">Mobile</span>
-      </nav>
-
-      {/* 2. Hero Section */}
-      <section className="flex flex-col items-center pt-20 px-4 relative z-10 min-h-screen">
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          className="text-6xl md:text-7xl font-black text-[#44d62c] tracking-tighter mb-6 text-center"
+    <div className="text-center group cursor-pointer">
+      <div className="relative">
+        <div className="image-inner aspect-[3/4] overflow-hidden rounded-xl flex items-center justify-center">
+          <img
+            src={cat.icon}
+            alt={cat.name}
+            className="w-full h-full object-cover card-hover"
+          />
+        </div>
+        <button 
+          onClick={() => setIsLiked(!isLiked)} 
+          className="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
         >
-          GAMING HEADSETS
-        </motion.h1>
-        <p className="max-w-2xl text-center text-gray-400 text-lg mb-12">
-          Experience clear, powerful audio that builds incredible soundscapes for a new level of immersion.
-        </p>
-
-        <div className="w-full max-w-4xl px-4">
-          <video
-            ref={heroVideoRef}
-            loop muted playsInline
-            className="w-full h-auto rounded-lg"
-            src="/headphone.mp4" 
-          />
-        </div>
-      </section>
-
-      {/* 3. NEW SECTION: BlackShark V3 Pro */}
-      <section className="flex flex-col items-center py-32 px-4 bg-[#050505]">
-        <div className="text-center mb-10">
-          <span className="text-[#44d62c] uppercase tracking-[0.4em] text-2xl font-bold">New</span>
-          <h2 className="text-5xl md:text-6xl font-black mt-4 mb-2 tracking-tight">
-            RAZER BLACKSHARK V3 PRO
-          </h2>
-          <p className="text-gray-400 text-xl tracking-wide">
-            Wireless ANC Esports Headset
-          </p>
-          <a href="#" className="text-[#44d62c] mt-6 inline-block hover:underline font-medium">
-            Learn More {">"}
-          </a>
-        </div>
-
-        {/* Video for the BlackShark Section */}
-        <div className="relative w-full max-w-md max-h-[450px] flex justify-center">
-          {/* Green circular glow effect seen in your screenshot */}
-          <div className="absolute inset-0 bg-[#44d62c]/10 blur-[120px] rounded-full scale-75" />
-          
-          <video
-            ref={secondaryVideoRef}
-            loop muted playsInline
-            className="w-full max-w-md max-h-[450px] rounded-lg relative z-10"
-            src="/earbuds.mp4" // Ensure this file is in your public/ folder
-          />
-        </div>
-      </section>
-
-      {/* 4. Global Control Button */}
-      <button 
-        onClick={() => setIsPlaying(!isPlaying)}
-        className="fixed bottom-10 right-10 w-14 h-14 bg-[#44d62c] rounded-full flex items-center justify-center transition-all z-50 hover:bg-[#39b525] shadow-lg shadow-[#44d62c]/20"
-      >
-        {isPlaying ? (
-          <svg viewBox="0 0 24 24" fill="black" className="w-6 h-6"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-        ) : (
-          <svg viewBox="0 0 24 24" fill="black" className="w-6 h-6 ml-1"><path d="M8 5v14l11-7z"/></svg>
-        )}
-      </button>
-
+          <svg xmlns="http://www.w3.org/2000/svg" fill={isLiked ? 'red' : 'none'} viewBox="0 0 24 24" strokeWidth={1.5} stroke={isLiked ? 'red' : 'white'} className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+          </svg>
+        </button>
+      </div>
+      <h4 className="mt-4 text-lg font-bold">{cat.name}</h4>
     </div>
-  )
-}
+  );
+};
 
-export default App
+/* ===================== CATEGORY SPOTLIGHT ===================== */
+const CategorySpotlight = () => {
+  const [showAll, setShowAll] = React.useState(false);
+  const filteredCategories = categories.filter(cat => cat.section === "explore");
+
+  return (
+    <section className="py-16">
+      <div className="text-center mb-16">
+        <h3 className="text-4xl font-black italic mb-4">
+          Explore Categories
+        </h3>
+        <p className="text-lg text-zinc-400 max-w-2xl mx-auto">Discover our wide range of high-fidelity audio products, meticulously engineered for the discerning listener.</p>
+        <p className="text-cyan-400 cursor-pointer mt-4 text-base font-semibold">Learn More</p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {filteredCategories.slice(0, showAll ? filteredCategories.length : 4).map(cat => (
+          <CategoryCard key={cat.id} cat={cat} />
+        ))}
+      </div>
+      {!showAll && filteredCategories.length > 4 && (
+        <div className="text-center mt-8">
+          <button onClick={() => setShowAll(true)} className="bg-cyan-500 text-white font-bold uppercase px-6 py-3 rounded">
+            View All
+          </button>
+        </div>
+      )}
+    </section>  
+  );
+};
+
+
+/* ===================== SHOP BY CATEGORY ===================== */
+const ShopByCategory = () => {
+  const [showAll, setShowAll] = React.useState(false);
+  const filteredCategories = categories.filter((cat) => cat.section === "category");
+
+  return (
+    <section className="py-24 px-6 lg:px-20">
+      <div className="text-center mb-16">
+        <h3 className="text-4xl font-black italic mb-4">
+          Shop by Category
+        </h3>
+        <p className="text-lg text-zinc-400 max-w-2xl mx-auto">From immersive headphones to portable speakers, find the perfect audio gear to suit your lifestyle.</p>
+        <p className="text-cyan-400 cursor-pointer mt-4 text-base font-semibold">Learn More</p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {filteredCategories.slice(0, showAll ? filteredCategories.length : 4).map((cat) => (
+          <CategoryCard key={cat.id} cat={cat} />
+        ))}
+      </div>
+      {!showAll && filteredCategories.length > 4 && (
+        <div className="text-center mt-8">
+          <button onClick={() => setShowAll(true)} className="bg-cyan-500 text-white font-bold uppercase px-6 py-3 rounded">
+            View All
+          </button>
+        </div>
+      )}
+    </section>
+  );
+};
+
+/* ===================== SHOP PRODUCTS ===================== */
+const Products = () => {
+  const [showAll, setShowAll] = React.useState(false);
+
+  return (
+    <section className="py-24 px-6 lg:px-20">
+      <div className="text-center mb-16">
+        <h3 className="text-4xl font-black italic mb-4">
+          Shop Products
+        </h3>
+        <p className="text-lg text-zinc-400 max-w-2xl mx-auto">Explore our newest collection of cutting-edge audio devices, designed for premium sound and comfort.</p>
+        <p className="text-cyan-400 cursor-pointer mt-4 text-base font-semibold">Learn More</p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {products.slice(0, showAll ? products.length : 4).map((product) => (
+          <div key={product.id} className="text-center group cursor-pointer product-card-container">
+            <div className="relative">
+              <div className="image-inner aspect-[3/4] rounded-xl overflow-hidden flex items-center justify-center">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-cover card-hover"
+                />
+              </div>
+              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-row items-end justify-center gap-4 pb-4 rounded-xl">
+                <button className="bg-white text-black font-bold text-xs uppercase px-4 py-2 rounded">Buy Now</button>
+                <button className="bg-cyan-500 text-white font-bold text-xs uppercase px-4 py-2 rounded">Add to Cart</button>
+              </div>
+            </div>
+
+            <h4 className="mt-4 text-lg font-bold">{product.name}</h4>
+            <p className="font-bold">₹{product.price}</p>
+          </div>
+        ))}
+      </div>
+      {!showAll && products.length > 4 && (
+        <div className="text-center mt-8">
+          <button onClick={() => setShowAll(true)} className="bg-cyan-500 text-white font-bold uppercase px-6 py-3 rounded">
+            View All
+          </button>
+        </div>
+      )}
+    </section>
+  );
+};
+
+
+/* ===================== APP ===================== */
+export default function App() {
+  return (
+    <div className="min-h-screen w-full bg-[#0f1115] text-white">
+      <div className="max-w-7xl mx-auto px-6">
+
+        <CategorySpotlight />
+        <ShopByCategory />
+        <Products />
+
+      </div>
+    </div>
+  );
+}

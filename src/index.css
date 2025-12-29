@@ -1,19 +1,7 @@
-@import "tailwindcss";
+/* Minimal global CSS. Tailwind utilities are loaded via the Play CDN in index.html. */
 
-@theme {
-  --color-razer-green: #44d62c;
+html,body,#root {
+	height: 100%;
 }
 
-:root {
-  background-color: #000000;
-  color-scheme: dark;
-}
-
-body {
-  margin: 0;
-  background-color: black;
-  color: white;
-  min-height: 100vh;
-  /* Overrides default Vite centering styles */
-  display: block !important;
-}
+/* leave App.css for project-specific styles */
