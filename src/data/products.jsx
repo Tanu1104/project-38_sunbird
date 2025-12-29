@@ -34,6 +34,4 @@ export const products = [
     image: "/products/speaker/speaker.jpeg",
     type: "speaker",
   },
-  
 ];
-
