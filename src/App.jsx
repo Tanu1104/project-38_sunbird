@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-
+import Warranty from "./pages/Warranty";
+import AllSupport from "./pages/AllSupport";
 // Simple reusable page
 const Page = ({ title }) => (
   <div className="pt-32 min-h-screen bg-black text-white flex items-center justify-center text-3xl font-bold">
@@ -26,11 +27,14 @@ function App() {
         <Route path="/store/neckband" element={<Page title="Neckband" />} />
 
         {/* Support Routes */}
-        <Route path="/support" element={<Page title="Support" />} />
+        
         <Route path="/help" element={<Page title="Help" />} />
         <Route path="/faq" element={<Page title="FAQ" />} />
         <Route path="/returns" element={<Page title="Returns & Refunds" />} />
         <Route path="/shipping" element={<Page title="Shipping Guide" />} />
+        <Route path="/warranty" element={<Warranty />} />
+        <Route path="/support" element={<AllSupport />} />
+
       </Routes>
         <Footer />
     </Router>
