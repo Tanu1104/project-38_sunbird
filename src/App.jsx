@@ -134,7 +134,7 @@ const Products = () => {
 
 
 /* ===================== APP ===================== */
-function App() {
+export default function App() {
   return (
     <div className="min-h-screen w-full bg-[#0f1115] text-white">
       <Header />
@@ -159,15 +159,5 @@ function App() {
       </div>
       <Footer />
     </div>
-  );
-}
-export default function Root() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-    </BrowserRouter>
   );
 }
