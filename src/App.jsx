@@ -1,207 +1,139 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
-import Warranty from "./pages/Warranty";
-import AllSupport from "./pages/AllSupport";
-// Simple reusable page
-const Page = ({ title }) => (
-  <div className="pt-32 min-h-screen bg-black text-white flex items-center justify-center text-3xl font-bold">
-    {title}
-  </div>
-);
+import { useState, useEffect, useRef } from 'react'
+import './App.css'
 
 function App() {
-  return (
-    <Router>
-      <NavBar />
-    
-      <Routes>
-        <Route path="/" element={<Page title="Welcome to SUNBIRD 🚀" />} />
+  const videoRef = useRef(null)
+  const [videoLoaded, setVideoLoaded] = useState(false)
 
-        {/* Store Routes */}
-        <Route path="/store/latest" element={<Page title="Shop The Latest" />} />
-        <Route path="/store/earbuds" element={<Page title="Earbuds" />} />
-        <Route path="/store/smartwatch" element={<Page title="Smart Watch" />} />
-        <Route path="/store/earphone" element={<Page title="Earphone" />} />
-        <Route path="/store/speaker" element={<Page title="Speaker" />} />
-        <Route path="/store/neckband" element={<Page title="Neckband" />} />
+  useEffect(() => {
+    // Preload the video
+    if (videoRef.current) {
+      videoRef.current.load()
+      
+      const handleCanPlay = () => {
+        setVideoLoaded(true)
+        videoRef.current.play()
+      }
+      
+      videoRef.current.addEventListener('canplay', handleCanPlay)
+      
+      return () => {
+        if (videoRef.current) {
+          videoRef.current.removeEventListener('canplay', handleCanPlay)
+        }
+      }
+    }
+  }, [])
 
-        {/* Support Routes */}
-        
-        <Route path="/help" element={<Page title="Help" />} />
-        <Route path="/faq" element={<Page title="FAQ" />} />
-        <Route path="/returns" element={<Page title="Returns & Refunds" />} />
-        <Route path="/shipping" element={<Page title="Shipping Guide" />} />
-        <Route path="/warranty" element={<Warranty />} />
-        <Route path="/support" element={<AllSupport />} />
-
-      </Routes>
-        <Footer />
-    </Router>
-  );
-}
-
-export default App;
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import { categories } from "./data/categories";
-import { products } from "./data/products";
-import "./App.css";
-import Header from "./components/Header";
-import ShopTheLatest from "./components/ShopTheLatest";
-import HeroSection from "./components/HeroSection";
-import PromoSection from "./components/PromoSection";
-import ProductCard from "./components/ProductCard";
-import Footer from "./components/Footer";
-import ContactUs from "./components/ContactUs";
-import FollowUs from "./components/FollowUs";
-
-const CategoryCard = ({ cat }) => {
-  const [isLiked, setIsLiked] = React.useState(false);
+  const handleReplay = () => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0
+      videoRef.current.play()
+    }
+  }
 
   return (
-    <div className="text-center group cursor-pointer">
-      <div className="relative">
-        <div className="image-inner aspect-[3/4] overflow-hidden rounded-xl flex items-center justify-center">
-          <img
-            src={cat.icon}
-            alt={cat.name}
-            className="w-full h-full object-cover card-hover"
-          />
-        </div>
-        <button 
-          onClick={() => setIsLiked(!isLiked)} 
-          className="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+    <div className="container">
+      {/* Video Background */}
+      <div className="video-container">
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          playsInline
+          preload="metadata"
+          className="video-bg noloop"
+          poster=""
+          data-speed=""
+          loop
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill={isLiked ? 'red' : 'none'} viewBox="0 0 24 24" strokeWidth={1.5} stroke={isLiked ? 'red' : 'white'} className="w-5 h-5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+          <source 
+            media="(max-width: 768px)" 
+            src="https://assets2.razerzone.com/images/pnx.assets/2b2992cb1df4542d05811355b291e4f2/razer-blackshark-v3-pro-kv-768x500.mp4" 
+            type="video/mp4" 
+          />
+          <source 
+            src="https://assets2.razerzone.com/images/pnx.assets/2b2992cb1df4542d05811355b291e4f2/razer-blackshark-v3-pro-kv-1920x700.mp4" 
+            type="video/mp4" 
+          />
+          Your browser does not support the video tag.
+        </video>
+        
+        {/* Video Overlay Effects */}
+        <div className="video-overlay"></div>
+        <div className="video-glow"></div>
+      </div>
+
+      {/* Loading Animation */}
+      {!videoLoaded && (
+        <div className="loading-animation">
+          <div className="loading-spinner"></div>
+          <div className="loading-text">Loading Headphone Animation...</div>
+        </div>
+      )}
+
+      {/* Content Overlay */}
+      <div className="content-overlay">
+        {/* Title */}
+        <div className="title-section">
+          <h1 className="main-title">IMMERSIVE AUDIO</h1>
+          <p className="subtitle">GAMING HEADSETS & HEADPHONES</p>
+          <div className="title-line"></div>
+        </div>
+
+        {/* Controls */}
+        <div className="controls-section">
+          <div className="instructions">
+           
+          </div>
+          <button className="replay-button" onClick={handleReplay}>
+            <div className="button-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 5V1L7 6L12 11V7C15.31 7 18 9.69 18 13C18 16.31 15.31 19 12 19C8.69 19 6 16.31 6 13H4C4 17.42 7.58 21 12 21C16.42 21 20 17.42 20 13C20 8.58 16.42 5 12 5Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <span className="button-text">REPLAY </span>
+            <div className="button-glow"></div>
+          </button>
+        </div>
+      </div>
+
+      {/* Razer-like UI Elements */}
+      <div className="razer-ui">
+        <div className="nav-bar">
+          <div className="nav-logo">RAZER</div>
+          <div className="nav-menu">
+            <span>STORE</span>
+            <span>PC</span>
+            <span>CONSOLE</span>
+            <span>MOBILE</span>
+            <span>LIFESTYLE</span>
+            <span>SERVICES</span>
+            <span>COMMUNITY</span>
+            <span>SUPPORT</span>
+          </div>
+          <div className="nav-search">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M11.7422 10.3439C12.5329 9.2673 13 7.9382 13 6.5C13 2.91015 10.0899 0 6.5 0C2.91015 0 0 2.91015 0 6.5C0 10.0899 2.91015 13 6.5 13C7.9382 13 9.2673 12.5329 10.3439 11.7422L14.2929 15.6912C14.6834 16.0817 15.3166 16.0817 15.7071 15.6912C16.0976 15.3007 16.0976 14.6675 15.7071 14.277L11.7422 10.3439ZM12 6.5C12 9.53757 9.53757 12 6.5 12C3.46243 12 1 9.53757 1 6.5C1 3.46243 3.46243 1 6.5 1C9.53757 1 12 3.46243 12 6.5Z" fill="currentColor"/>
+            </svg>
+            <span>Search</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Video Controls */}
+      <div className="video-controls">
+        <button className="video-control-btn mute-btn">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M12 4l-4 4H4v4h4l4 4V4z" fill="currentColor"/>
           </svg>
         </button>
+        <div className="video-progress">
+          <div className="progress-bar"></div>
+        </div>
       </div>
-      <h4 className="mt-4 text-lg font-bold">{cat.name}</h4>
     </div>
-  );
-};
-
-/* ===================== CATEGORY SPOTLIGHT ===================== */
-const CategorySpotlight = () => {
-  const [showAll, setShowAll] = React.useState(false);
-  const filteredCategories = categories.filter(cat => cat.section === "explore");
-
-  return (
-    <section className="py-16">
-      <div className="text-center mb-16">
-        <h3 className="text-4xl font-black italic mb-4">
-          Explore Categories
-        </h3>
-        <p className="text-lg text-zinc-400 max-w-2xl mx-auto">Discover our wide range of high-fidelity audio products, meticulously engineered for the discerning listener.</p>
-        <p className="text-cyan-400 cursor-pointer mt-4 text-base font-semibold">Learn More</p>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {filteredCategories.slice(0, showAll ? filteredCategories.length : 4).map(cat => (
-          <CategoryCard key={cat.id} cat={cat} />
-        ))}
-      </div>
-      {!showAll && filteredCategories.length > 4 && (
-        <div className="text-center mt-8">
-          <button onClick={() => setShowAll(true)} className="bg-cyan-500 text-white font-bold uppercase px-6 py-3 rounded">
-            View All
-          </button>
-        </div>
-      )}
-    </section>  
-  );
-};
-
-
-/* ===================== SHOP BY CATEGORY ===================== */
-const ShopByCategory = () => {
-  const [showAll, setShowAll] = React.useState(false);
-  const filteredCategories = categories.filter((cat) => cat.section === "category");
-
-  return (
-    <section className="py-24 px-6 lg:px-20">
-      <div className="text-center mb-16">
-        <h3 className="text-4xl font-black italic mb-4">
-          Shop by Category
-        </h3>
-        <p className="text-lg text-zinc-400 max-w-2xl mx-auto">From immersive headphones to portable speakers, find the perfect audio gear to suit your lifestyle.</p>
-        <p className="text-cyan-400 cursor-pointer mt-4 text-base font-semibold">Learn More</p>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {filteredCategories.slice(0, showAll ? filteredCategories.length : 4).map((cat) => (
-          <CategoryCard key={cat.id} cat={cat} />
-        ))}
-      </div>
-      {!showAll && filteredCategories.length > 4 && (
-        <div className="text-center mt-8">
-          <button onClick={() => setShowAll(true)} className="bg-cyan-500 text-white font-bold uppercase px-6 py-3 rounded">
-            View All
-          </button>
-        </div>
-      )}
-    </section>
-  );
-};
-
-/* ===================== SHOP PRODUCTS ===================== */
-const Products = () => {
-  const [showAll, setShowAll] = React.useState(false);
-
-  return (
-    <section className="py-24 px-6 lg:px-20">
-      <div className="text-center mb-16">
-        <h3 className="text-4xl font-black italic mb-4">
-          Shop Products
-        </h3>
-        <p className="text-lg text-zinc-400 max-w-2xl mx-auto">Explore our newest collection of cutting-edge audio devices, designed for premium sound and comfort.</p>
-        <p className="text-cyan-400 cursor-pointer mt-4 text-base font-semibold">Learn More</p>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {products.slice(0, showAll ? products.length : 4).map((product) => (
-          <ProductCard key={product.id} product={product} showButtons={true} />
-        ))}
-      </div>
-      {!showAll && products.length > 4 && (
-        <div className="text-center mt-8">
-          <button onClick={() => setShowAll(true)} className="bg-cyan-500 text-white font-bold uppercase px-6 py-3 rounded">
-            View All
-          </button>
-        </div>
-      )}
-    </section>
-  );
-};
-
-
-/* ===================== APP ===================== */
-export default function App() {
-  return (
-    <div className="min-h-screen w-full bg-[#0f1115] text-white">
-      <Header />
-      <div className="max-w-7xl mx-auto px-6">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <HeroSection />
-                <CategorySpotlight />
-                <ShopByCategory />
-                <Products />
-                <PromoSection />
-              </>
-            }
-          />
-          <Route path="/shop" element={<ShopTheLatest />} />
-          <Route path="/contact" element={<ContactUs />} />
-          <Route path="/follow" element={<FollowUs />} />
-        </Routes>
-      </div>
-      <Footer />
-    </div>
-  );
+  )
 }
+
+export default App
