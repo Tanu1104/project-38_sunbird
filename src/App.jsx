@@ -2,6 +2,8 @@ import React from "react";
 import { categories } from "./data/categories";
 import { products } from "./data/products";
 import "./App.css";
+import About from "./components/About";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 const CategoryCard = ({ cat }) => {
   const [isLiked, setIsLiked] = React.useState(false);
@@ -142,7 +144,7 @@ const Products = () => {
 
 
 /* ===================== APP ===================== */
-export default function App() {
+function App() {
   return (
     <div className="min-h-screen w-full bg-[#0f1115] text-white">
       <div className="max-w-7xl mx-auto px-6">
@@ -153,5 +155,15 @@ export default function App() {
 
       </div>
     </div>
+  );
+}
+export default function Root() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
