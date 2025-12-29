@@ -1,7 +1,16 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import { categories } from "./data/categories";
 import { products } from "./data/products";
 import "./App.css";
+import Header from "./components/Header";
+import ShopTheLatest from "./components/ShopTheLatest";
+import HeroSection from "./components/HeroSection";
+import PromoSection from "./components/PromoSection";
+import ProductCard from "./components/ProductCard";
+import Footer from "./components/Footer";
+import ContactUs from "./components/ContactUs";
+import FollowUs from "./components/FollowUs";
 
 const CategoryCard = ({ cat }) => {
   const [isLiked, setIsLiked] = React.useState(false);
@@ -109,24 +118,7 @@ const Products = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {products.slice(0, showAll ? products.length : 4).map((product) => (
-          <div key={product.id} className="text-center group cursor-pointer product-card-container">
-            <div className="relative">
-              <div className="image-inner aspect-[3/4] rounded-xl overflow-hidden flex items-center justify-center">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover card-hover"
-                />
-              </div>
-              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-row items-end justify-center gap-4 pb-4 rounded-xl">
-                <button className="bg-white text-black font-bold text-xs uppercase px-4 py-2 rounded">Buy Now</button>
-                <button className="bg-cyan-500 text-white font-bold text-xs uppercase px-4 py-2 rounded">Add to Cart</button>
-              </div>
-            </div>
-
-            <h4 className="mt-4 text-lg font-bold">{product.name}</h4>
-            <p className="font-bold">₹{product.price}</p>
-          </div>
+          <ProductCard key={product.id} product={product} showButtons={true} />
         ))}
       </div>
       {!showAll && products.length > 4 && (
@@ -145,13 +137,27 @@ const Products = () => {
 export default function App() {
   return (
     <div className="min-h-screen w-full bg-[#0f1115] text-white">
+      <Header />
       <div className="max-w-7xl mx-auto px-6">
-
-        <CategorySpotlight />
-        <ShopByCategory />
-        <Products />
-
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <HeroSection />
+                <CategorySpotlight />
+                <ShopByCategory />
+                <Products />
+                <PromoSection />
+              </>
+            }
+          />
+          <Route path="/shop" element={<ShopTheLatest />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/follow" element={<FollowUs />} />
+        </Routes>
       </div>
+      <Footer />
     </div>
   );
 }
