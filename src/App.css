@@ -1,360 +1,123 @@
-.container {
-  height: 100vh;
-  width: 100vw;
-  background: #000;
-  overflow: hidden;
-  position: relative;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+/* =======================
+   RESET & BASE
+======================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Video Container */
-.video-container {
-  position: absolute;
-  top: 0;
-  left: 0;
+html,
+body {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.video-bg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
   min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
-  opacity: 1;
-  transition: opacity 0.5s ease;
-  object-position: center center;
+  background-color: #011930;
+  color: #fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
 }
 
-.video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+/* =======================
+   GLOBAL SECTIONS
+======================= */
+.section {
+  padding: 6rem 1.5rem;
+  background-color: #060125;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  margin-bottom: 3rem;
+  color: #fff;
+}
+
+.section-subtitle {
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin-bottom: 2rem;
+}
+
+/* =======================
+   HORIZONTAL SCROLL
+======================= */
+.horizontal-scroll {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* =======================
+   PRODUCT CARDS
+======================= */
+.product-card {
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.8) 0%,
-    rgba(0, 0, 0, 0.6) 20%,
-    rgba(0, 0, 0, 0.4) 40%,
-    rgba(0, 0, 0, 0.6) 60%,
-    rgba(0, 0, 0, 0.8) 100%
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.04)
   );
-  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-.video-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  height: 80%;
-  background: radial-gradient(
-    circle at center,
-    rgba(0, 255, 0, 0.1) 0%,
-    rgba(0, 255, 0, 0.05) 20%,
-    transparent 60%
-  );
-  filter: blur(80px);
-  pointer-events: none;
-  animation: videoGlow 4s infinite alternate;
+.product-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(2, 6, 23, 0.6);
 }
 
-/* Loading Animation */
-.loading-animation {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 100;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 40px;
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
+/* Image inside product card */
+.product-image {
+  height: 140px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.28s ease, filter 0.28s ease;
 }
 
-.loading-spinner {
-  width: 60px;
-  height: 60px;
-  border: 3px solid rgba(0, 255, 0, 0.3);
-  border-top-color: #00ff00;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin: 0 auto 20px;
+.product-card:hover .product-image {
+  transform: translateY(-6px) scale(1.03);
+  filter: drop-shadow(0 12px 30px rgba(2, 6, 23, 0.6));
 }
 
-.loading-text {
-  color: #00ff00;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-/* Content Overlay */
-.content-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index: 10;
-}
-
-/* Title Section */
-.title-section {
-  text-align: center;
-  margin-top: 15vh;
-  animation: fadeInUp 1s ease-out;
-}
-
-.main-title {
-  font-size: 6rem;
-  font-weight: 800;
-  background: linear-gradient(90deg, #ffffff 30%, #00ff00 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 0;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  text-shadow: 0 0 50px rgba(0, 255, 0, 0.5);
-  line-height: 1.1;
-}
-
-.subtitle {
-  font-size: 1.4rem;
-  font-weight: 300;
-  color: #aaa;
-  margin: 20px 0 0 0;
-  letter-spacing: 8px;
-  text-transform: uppercase;
-}
-
-.title-line {
-  width: 300px;
-  height: 2px;
-  background: linear-gradient(90deg, 
-    transparent 0%,
-    #00ff00 50%,
-    transparent 100%);
-  margin: 30px auto;
-  filter: blur(1px);
-}
-
-/* Controls Section */
-.controls-section {
-  position: absolute;
-  bottom: 40px;
-  right: 40px;
-  text-align: right;
-  animation: fadeInUp 1s ease-out 0.5s both;
-  z-index: 30;
-}
-
-.replay-button {
-  background: rgba(0, 255, 0, 0.1);
-  border: 1px solid rgba(0, 255, 0, 0.3);
-  padding: 20px 40px;
-  border-radius: 30px;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  position: relative;
-  overflow: hidden;
-  letter-spacing: 2px;
-}
-
-.replay-button:hover {
-  background: rgba(0, 255, 0, 0.2);
-  transform: translateY(-3px);
-  box-shadow: 
-    0 15px 40px rgba(0, 255, 0, 0.3),
-    0 0 0 1px rgba(0, 255, 0, 0.5);
-}
-
-.replay-button:hover .button-icon svg {
-  animation: spin 1s linear infinite;
-}
-
-.button-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.button-icon svg {
-  width: 20px;
-  height: 20px;
-  color: #00ff00;
-}
-
-.button-glow {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, 
-    transparent 0%,
-    rgba(0, 255, 0, 0.3) 50%,
-    transparent 100%;
-  transition: left 0.6s ease;
-}
-
-.replay-button:hover .button-glow {
-  left: 100%;
-}
-
-.instructions {
-  margin-bottom: 15px;
-  color: #999;
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  text-align: right;
-}
-
-/* Razer UI */
-.razer-ui {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 20;
-}
-
-.nav-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 40px;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
-}
-
-.nav-logo {
-  color: #00ff00;
-  font-size: 24px;
+/* =======================
+   CTA BUTTON (HOVER)
+======================= */
+.add-btn {
+  background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+  color: #07102a;
   font-weight: 700;
-  letter-spacing: 2px;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 200ms ease,
+    transform 200ms cubic-bezier(0.2, 0.9, 0.2, 1);
+  pointer-events: none;
 }
 
-.nav-menu {
-  display: flex;
-  gap: 30px;
-  color: #ccc;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.product-card:hover .add-btn {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
-.nav-menu span {
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.nav-menu span:hover {
-  color: #00ff00;
-}
-
-.nav-search {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #ccc;
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.nav-search svg {
-  width: 14px;
-  height: 14px;
-}
-
-/* Video Controls */
-.video-controls {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 10px 15px;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  z-index: 20;
-}
-
-.video-control-btn {
-  background: transparent;
-  border: none;
-  color: #ccc;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-}
-
-.video-control-btn:hover {
-  color: #00ff00;
-  background: rgba(0, 255, 0, 0.1);
-}
-
-.video-progress {
-  width: 100px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.progress-bar {
-  width: 30%;
-  height: 100%;
-  background: #00ff00;
-  border-radius: 2px;
-  animation: progressLoop 5s linear infinite;
-}
-
-/* Animations */
-@keyframes videoGlow {
-  0% {
-    opacity: 0.3;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  100% {
-    opacity: 0.6;
-    transform: translate(-50%, -50%) scale(1.1);
-  }
-}
-
-@keyframes fadeInUp {
+/* =======================
+   ENTRY ANIMATION
+======================= */
+@keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
@@ -362,101 +125,16 @@
   }
 }
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.animate-in {
+  opacity: 0;
+  animation: fadeUp 480ms cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
 }
 
-@keyframes progressLoop {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(400%);
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .main-title {
-    font-size: 4rem;
-  }
-  
-  .nav-menu {
-    gap: 20px;
-    font-size: 11px;
-  }
-  
-  .controls-section {
-    bottom: 30px;
-    right: 30px;
-  }
-}
-
+/* =======================
+   RESPONSIVE
+======================= */
 @media (max-width: 768px) {
-  .main-title {
-    font-size: 2.5rem;
-    letter-spacing: 4px;
-  }
-  
-  .subtitle {
-    font-size: 1rem;
-    letter-spacing: 4px;
-  }
-  
-  .nav-menu {
-    display: none;
-  }
-  
-  .title-line {
-    width: 200px;
-  }
-  
-  .replay-button {
-    padding: 16px 30px;
-    font-size: 12px;
-  }
-  
-  .controls-section {
-    bottom: 20px;
-    right: 20px;
-  }
-  
-  .instructions {
-    font-size: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .main-title {
+  .section-title {
     font-size: 2rem;
-    letter-spacing: 2px;
-  }
-  
-  .subtitle {
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-  }
-  
-  .nav-bar {
-    padding: 15px 20px;
-  }
-  
-  .title-section {
-    margin-top: 25vh;
-  }
-  
-  .controls-section {
-    bottom: 15px;
-    right: 15px;
-  }
-  
-  .replay-button {
-    padding: 14px 25px;
-    font-size: 11px;
   }
 }

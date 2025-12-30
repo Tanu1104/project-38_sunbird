@@ -1,0 +1,119 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: black;
+}
+
+.hero-video-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.hero-content {
+ position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers items horizontally */
+  justify-content: center; /* Centers items vertically */
+  text-align: center;
+  padding: 0 10%;
+  height: 100%;
+}
+
+.hero-content h1 {
+ color: #44d62c; /* Razer Green */
+  font-size: clamp(2.5rem, 5vw, 4.5rem); /* Responsive scaling */
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.hero-content p {
+ color: #999; /* Subtle grey like the screenshot */
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  line-height: 1.6;
+  font-weight: 400;
+  /* Key for Justification: Limit width and center the block */
+  max-width: 800px; 
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: 0.5px;
+}
+
+/* Container to pin the button to the bottom right */
+.controls-section {
+  position: absolute;
+  bottom: 40px; /* Distance from bottom */
+  right: 40px;  /* Distance from right */
+  z-index: 30;  /* Ensures it stays above the video and gradients */
+}
+
+.replay-button {
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  padding: 12px 24px;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.replay-button:hover {
+  background: rgba(0, 255, 0, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+  border-color: #44d62c;
+}
+
+.hero-loader {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: black;
+  color: white;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #444;
+  border-top: 4px solid #44d62c;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
