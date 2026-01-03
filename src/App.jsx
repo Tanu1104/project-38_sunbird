@@ -27,6 +27,9 @@ import ExploreCategories from "./components/ExploreCategories";
 import ShopByCategory from "./components/ShopByCategoryPage";
 import ShopProductsPage from "./components/ShopProductPage";
 
+
+import Login from "./Profile/login&signup";
+import Signup from "./Profile/Signup";
 const CategoryCard = ({ cat }) => (
   <div className="text-center group cursor-pointer">
     <div className="aspect-[3/4] overflow-hidden rounded-xl bg-zinc-900 border border-zinc-800">
@@ -95,6 +98,9 @@ export default function App() {
 
         {/* 404 Fallback */}
         <Route path="*" element={<div className="pt-40 text-center text-2xl font-bold">Page Under Construction</div>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+     
       </Routes>
 
       <Footer />
