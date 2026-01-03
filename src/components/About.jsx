@@ -1,171 +1,106 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const About = () => {
-  const [activeYear, setActiveYear] = useState('2023');
+  const navigate = useNavigate();
 
-  // Content for the History Timeline
-  const historyData = {
-    '2023': [
-      "Razer brought home a total of 46 awards at CES 2023, including Best of CES.",
-      "Launched the Razer Kiyo Pro Ultra, featuring the largest sensor ever in a webcam.",
-      "Lee 'Faker' Sang-hyeok won the League of Legends World Championship for the fourth time.",
-      "Razer became the #1 PC Gaming Headset Brand in the US."
-    ],
-    '2022': [
-      "Unveiled the Razer Edge, the ultimate 5G handheld gaming device.",
-      "Expanded the Razer Enki line with the Pro HyperSense gaming chair.",
-      "Launched the Viper V2 Pro, setting a new standard for esports mice."
-    ],
-    // Add additional years as needed
-  };
-
-  const years = ['2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014'];
+  const milestones = [
+    { year: "2025", event: "Sunbird Founded" },
+    { year: "2026", event: "Launch of the First Immersive Headset" },
+    { year: "2028", event: "Global Expansion & Innovation Lab" },
+  ];
 
   return (
-    <div className="min-h-screen bg-black text-white font-sans selection:bg-[#44d62c] selection:text-black overflow-x-hidden">
-      
-      {/* 1. Header Navigation */}
-      <nav className="flex justify-center gap-8 py-6 text-[11px] uppercase tracking-[0.2em] text-gray-400 border-b border-white/10 sticky top-0 bg-black/90 backdrop-blur-md z-50">
-        <Link to="/" className="hover:text-white transition-colors">Store</Link>
-        <Link to="/" className="hover:text-white transition-colors">PC</Link>
-        <Link to="/" className="hover:text-white transition-colors">Console</Link>
-        <Link to="/" className="text-[#44d62c] font-bold">About</Link>
-      </nav>
-
-      {/* 2. Hero Section & Narrative */}
-      <section className="pt-20 px-4 text-center">
-        <motion.h1 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-6xl md:text-8xl font-black text-[#44d62c] tracking-tight mb-4"
-        >
-          ABOUT RAZER
-        </motion.h1>
-        
-        <p className="text-lg md:text-xl font-bold mb-12">
-          Razer™ is the world’s leading lifestyle brand made For Gamers. By Gamers.
-        </p>
-        
-        <div className="max-w-4xl mx-auto text-gray-400 text-lg leading-relaxed space-y-8 mb-20">
-          <p>
-            The triple-headed snake trademark of Razer is one of the most recognized logos in the global gaming and esports communities. With a fan base that spans every continent, Razer has designed and built the world’s largest gamer-focused ecosystem of hardware, software and services.
+    <div className="bg-[#0f1115] text-white min-h-screen pt-20">
+      {/* 🔹 HERO SECTION */}
+      <div className="relative h-[400px] w-full overflow-hidden flex items-center border-b border-zinc-800">
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent z-10" />
+        <img 
+          src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=2000&auto=format&fit=crop" 
+          alt="Audio Tech" 
+          className="absolute inset-0 w-full h-full object-cover opacity-50"
+        />
+        <div className="relative z-20 max-w-7xl mx-auto px-8 w-full">
+          <h1 className="text-6xl font-black italic tracking-tighter uppercase leading-none">
+            Our <span className="text-[#44d62c]">Journey</span>
+          </h1>
+          <p className="text-xl text-zinc-400 mt-4 max-w-lg uppercase tracking-widest font-medium">
+            Crafting the future of sound since 2025.
           </p>
         </div>
+      </div>
 
-        {/* Feature Laptop Display */}
-        <div className="max-w-6xl mx-auto relative mb-32 px-4">
-          <img 
-            src="https://assets2.razerzone.com/images/pnx.assets/20857502787e914df16b47d3c01c0b39/razer-project-valerie-laptop.png" 
-            alt="Razer Project Valerie"
-            className="w-full h-auto relative z-10"
-          />
-          <div className="absolute inset-0 bg-[#44d62c]/5 blur-[120px] rounded-full scale-75" />
-        </div>
-      </section>
+      <div className="max-w-7xl mx-auto px-8 py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+          
+          {/* 🔹 LEFT CONTENT: WHO WE ARE */}
+          <div className="space-y-12">
+            <section>
+              <h2 className="text-[#44d62c] text-xl font-bold uppercase tracking-widest mb-6">Who We Are</h2>
+              <p className="text-zinc-400 leading-relaxed text-lg">
+                At <span className="text-white font-bold">Sunbird</span>, we are engineers, gamers, and audiophiles 
+                united by a passion for unparalleled sound experiences. Founded in 2025, our mission is to 
+                blend cutting-edge technology with ergonomic design to create products that improve 
+                every moment—whether you're gaming, creating, or relaxing.
+              </p>
+            </section>
 
-      {/* 3. History Section (Interactive Timeline) */}
-      <section className="max-w-6xl mx-auto px-6 py-24 border-t border-white/10">
-        <h2 className="text-5xl font-black text-[#44d62c] mb-12 italic tracking-tighter">HISTORY</h2>
-        
-        {/* Year Selector Bar */}
-        <div className="flex gap-8 overflow-x-auto pb-6 mb-12 scrollbar-hide border-b border-white/5">
-          {years.map(year => (
-            <button
-              key={year}
-              onClick={() => setActiveYear(year)}
-              className={`text-xl font-bold transition-all shrink-0 ${
-                activeYear === year ? 'text-[#44d62c] border-b-2 border-[#44d62c] pb-2' : 'text-gray-600 hover:text-gray-300'
-              }`}
+            <section>
+              <h2 className="text-[#44d62c] text-xl font-bold uppercase tracking-widest mb-6">Our Philosophy</h2>
+              <p className="text-zinc-400 leading-relaxed text-lg">
+                We believe audio is more than just sound; it's a tool for immersion and competitive advantage. 
+                Our team meticulously tunes every driver and ensures every material meets the high standards 
+                of professional esports athletes.
+              </p>
+            </section>
+
+            <button 
+              onClick={() => navigate('/shop')}
+              className="bg-[#44d62c] text-black font-bold py-4 px-8 uppercase tracking-widest hover:bg-[#32a822] transition-all transform hover:-translate-y-1"
             >
-              {year}
+              Explore Products
             </button>
-          ))}
+          </div>
+
+          {/* 🔹 RIGHT CONTENT: TEAM & MILESTONES */}
+          <div className="space-y-16">
+            {/* TEAM PREVIEW */}
+            <section>
+              <h2 className="text-zinc-500 text-xs font-bold uppercase tracking-[0.3em] mb-10 text-center">Precision. Performance. Passion.</h2>
+              <div className="flex justify-center gap-8">
+                {[1, 2, 3].map((member) => (
+                  <div key={member} className="text-center group">
+                    <div className="w-24 h-24 rounded-full border-2 border-[#44d62c] p-1 mb-4 group-hover:scale-110 transition duration-300">
+                      <div className="w-full h-full rounded-full bg-zinc-800 overflow-hidden">
+                        <img src={`https://i.pravatar.cc/150?img=${member + 10}`} alt="Team" className="w-full h-full object-cover" />
+                      </div>
+                    </div>
+                    <p className="text-xs font-bold uppercase text-white">Lead Engineer</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* MILESTONES TIMELINE */}
+            <section className="bg-zinc-900/30 p-8 border border-zinc-800 rounded-sm">
+              <h2 className="text-[#44d62c] text-xl font-bold uppercase tracking-widest mb-8">Milestones</h2>
+              <div className="space-y-8 relative">
+                <div className="absolute left-[7px] top-2 bottom-2 w-[2px] bg-zinc-800" />
+                {milestones.map((item, index) => (
+                  <div key={index} className="flex gap-6 relative z-10 items-start">
+                    <div className="w-4 h-4 rounded-full bg-[#44d62c] mt-1 shadow-[0_0_10px_#44d62c]" />
+                    <div>
+                      <span className="text-zinc-500 text-sm font-bold">{item.year}</span>
+                      <p className="text-zinc-200 font-medium">{item.event}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </div>
+
         </div>
-
-        {/* Timeline Content */}
-        <div className="min-h-[250px]">
-          <AnimatePresence mode="wait">
-            <motion.ul 
-              key={activeYear}
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              className="space-y-6 text-gray-300 text-lg md:text-xl"
-            >
-              {historyData[activeYear] ? historyData[activeYear].map((bullet, index) => (
-                <li key={index} className="flex gap-4">
-                  <span className="text-[#44d62c]">•</span>
-                  <span>{bullet}</span>
-                </li>
-              )) : (
-                <li className="text-gray-500 italic">Timeline data for this year is coming soon.</li>
-              )}
-            </motion.ul>
-          </AnimatePresence>
-        </div>
-      </section>
-
-      {/* 4. Accolades Section */}
-      <section className="max-w-6xl mx-auto px-6 py-24 bg-[#050505]">
-        <h2 className="text-5xl font-black text-[#44d62c] mb-16 italic tracking-tighter">ACCOLADES</h2>
-        
-        <div className="grid md:grid-cols-2 gap-16">
-          {/* PC Accolade */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
-            <div className="overflow-hidden rounded-xl border border-white/5">
-              <img 
-                src="https://assets2.razerzone.com/images/pnx.assets/20857502787e914df16b47d3c01c0b39/about-razer-accolades-pc.jpg" 
-                className="w-full h-auto hover:scale-105 transition-transform duration-700" 
-                alt="PC Gaming"
-              />
-            </div>
-            <h3 className="text-3xl font-black uppercase tracking-tight">PC</h3>
-            <p className="text-gray-400 text-lg leading-relaxed">
-              Build your battle station with Razer's suite of award-winning peripherals, 
-              Blade laptops, and software platforms. The Blade continues to be the 
-              pinnacle of gaming laptops.
-            </p>
-          </motion.div>
-
-          {/* Console Accolade */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="space-y-6"
-          >
-            <div className="overflow-hidden rounded-xl border border-white/5">
-              <img 
-                src="https://assets2.razerzone.com/images/pnx.assets/20857502787e914df16b47d3c01c0b39/about-razer-accolades-console.jpg" 
-                className="w-full h-auto hover:scale-105 transition-transform duration-700" 
-                alt="Console Gaming"
-              />
-            </div>
-            <h3 className="text-3xl font-black uppercase tracking-tight">Console</h3>
-            <p className="text-gray-400 text-lg leading-relaxed">
-              Console gamers expect the highest quality from their devices, which is 
-              why Razer brings the latest technology to lines like Kraken and Wolverine.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Footer Branding */}
-      <footer className="py-32 flex flex-col items-center border-t border-white/5">
-        <div className="text-3xl md:text-5xl font-black text-[#44d62c] opacity-50 tracking-tighter">
-          FOR GAMERS. BY GAMERS.™
-        </div>
-      </footer>
-
+      </div>
     </div>
   );
 };
