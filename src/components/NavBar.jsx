@@ -1,87 +1,81 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo1.jpeg";
 
 const NavBar = () => {
   const [openStore, setOpenStore] = useState(false);
   const storeRef = useRef(null);
   const navigate = useNavigate();
 
-  // Close dropdown on outside click
+  const handleNavigation = (path) => {
+    navigate(path);
+    setOpenStore(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' }); 
+  };
+
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (storeRef.current && !storeRef.current.contains(e.target)) {
+    const handleClickOutside = (event) => {
+      if (openStore && storeRef.current && !storeRef.current.contains(event.target)) {
         setOpenStore(false);
       }
     };
-    if (openStore) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
+    document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [openStore]);
 
-  // Combined function to navigate and close the menu
-  const goTo = (path) => {
-    navigate(path);
-    setOpenStore(false);
-    window.scrollTo(0, 0); // Reset scroll position
-  };
-
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full bg-black text-white border-b border-gray-800 z-50">
+      <nav className="fixed top-0 left-0 w-full bg-black/90 backdrop-blur-md text-white border-b border-zinc-800 z-50">
         <div className="px-8 py-4 flex items-center justify-between">
-
-          {/* 🔹 LEFT SIDE (Logo + Store + Categories) */}
-          <div className="flex items-center gap-10">
-
-            {/* LOGO -> Links to Home "/" */}
-            <div
-              onClick={() => goTo("/")}
-              className="flex items-center gap-2 cursor-pointer group"
-            >
-              <img
-                src={logo}
-                alt="Sunbird Logo"
-                className="h-8 w-auto transition-transform duration-300 group-hover:scale-110"
-              />
-              <span className="font-bold tracking-wide text-lg">
-                <span className="text-white">SUN</span>
-                <span className="text-blue-500">BIRD</span>
-              </span>
+          <div className="flex items-center gap-8">
+            {/* LOGO */}
+            <div onClick={() => handleNavigation("/")} className="flex items-center gap-2 cursor-pointer mr-2">
+              <img src={logo} alt="Sunbird" className="h-9 w-auto" />
+              <span className="font-bold tracking-tighter text-xl uppercase hidden sm:block">Sunbird</span>
             </div>
 
-            {/* STORE -> Toggles Dropdown */}
-            <div
-              onClick={() => setOpenStore(!openStore)}
-              className={`cursor-pointer transition-colors duration-300 ${
-                openStore ? "text-[#44d62c]" : "text-gray-300 hover:text-[#44d62c]"
-              }`}
+            {/* --- HOME ICON BUTTON --- */}
+            <button 
+              onClick={() => handleNavigation("/")}
+              className="text-gray-300 hover:text-[#44d62c] transition-colors duration-300 bg-transparent border-none p-1 cursor-pointer flex items-center"
+              title="Home"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
+                <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.432z" />
+              </svg>
+            </button>
+
+            {/* STORE DROPDOWN TRIGGER */}
+            <div 
+              onClick={(e) => {
+                e.stopPropagation();
+                setOpenStore(!openStore);
+              }} 
+              className={`cursor-pointer font-medium transition-colors ${openStore ? "text-[#44d62c]" : "text-gray-300 hover:text-[#44d62c]"}`}
             >
               Store
             </div>
 
-            {/* CATEGORIES -> Links to categories page */}
-            <div
-              onClick={() => goTo("/shop")}
-              className="cursor-pointer text-gray-300 hover:text-[#44d62c] transition-colors duration-300"
+            {/* CATEGORIES LINK */}
+            <div 
+              onClick={() => handleNavigation("/categories")} 
+              className="cursor-pointer font-medium text-gray-300 hover:text-[#44d62c] transition-colors"
             >
               Categories
             </div>
           </div>
 
-          {/* 🔹 RIGHT SIDE (Icons) */}
+          {/* RIGHT SIDE (Search & Cart) */}
           <div className="flex items-center gap-6">
-            {/* Search Icon */}
             <button className="text-gray-300 hover:text-[#44d62c] transition-colors duration-300 bg-transparent border-none p-1 cursor-pointer">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
               </svg>
             </button>
 
-            {/* Cart Icon -> Links to "/cart" */}
             <button
-              onClick={() => goTo("/cart")}
+              onClick={() => handleNavigation("/cart")}
               className="text-gray-300 hover:text-[#44d62c] transition-colors duration-300 bg-transparent border-none p-1 cursor-pointer"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
@@ -92,44 +86,25 @@ const NavBar = () => {
         </div>
       </nav>
 
-      {/* STORE DROPDOWN */}
+      {/* DROPDOWN MENU */}
       {openStore && (
-        <div
-          ref={storeRef}
-          className="fixed top-[72px] left-0 w-full bg-[#111] text-white z-40 border-b border-zinc-800 shadow-2xl animate-in fade-in slide-in-from-top-2"
-        >
-          <div className="max-w-7xl mx-auto px-10 py-10 grid grid-cols-3 gap-10">
-
-            {/* Left Column: Product Sections */}
-            <div className="border-r border-gray-800 pr-8">
-              <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-6">Explore</p>
-              <ul className="space-y-4 text-sm font-medium">
-                <li onClick={() => goTo("/shop")} className="hover:text-[#44d62c] cursor-pointer transition-colors">Shop The Latest</li>
-                <li onClick={() => goTo("/store/earbuds")} className="hover:text-[#44d62c] cursor-pointer transition-colors">Earbuds</li>
-                <li onClick={() => goTo("/store/smartwatch")} className="hover:text-[#44d62c] cursor-pointer transition-colors">Smart Watch</li>
-                <li onClick={() => goTo("/store/earphone")} className="hover:text-[#44d62c] cursor-pointer transition-colors">Earphone</li>
-                <li onClick={() => goTo("/store/speaker")} className="hover:text-[#44d62c] cursor-pointer transition-colors">Speaker</li>
-                <li onClick={() => goTo("/store/neckband")} className="hover:text-[#44d62c] cursor-pointer transition-colors">Neckband</li>
+        <div ref={storeRef} className="fixed top-[68px] left-0 w-full bg-[#111] text-white z-40 border-b border-zinc-800 shadow-2xl">
+          <div className="max-w-7xl mx-auto px-10 py-12 grid grid-cols-2 gap-20">
+            <div>
+              <p className="text-zinc-500 text-xs font-bold tracking-widest mb-6 uppercase">Explore</p>
+              <ul className="space-y-4">
+                <li onClick={() => handleNavigation("/shop")} className="text-gray-300 hover:text-[#44d62c] cursor-pointer transition-colors">Shop The Latest</li>
+                {/* <li onClick={() => handleNavigation("/shop")} className="text-gray-300 hover:text-[#44d62c] cursor-pointer transition-colors">Earbuds</li> */}
               </ul>
             </div>
-
-            {/* Right Column: Support Sections */}
-            <div className="col-span-2 pl-8">
-              <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-6">Support & Service</p>
-              <div className="grid grid-cols-2 gap-4">
-                <ul className="space-y-4 text-sm font-medium">
-                  <li onClick={() => goTo("/support")} className="hover:text-[#44d62c] cursor-pointer transition-colors">All Support</li>
-                  <li onClick={() => goTo("/warranty")} className="hover:text-[#44d62c] cursor-pointer transition-colors">Warranty</li>
-                  <li onClick={() => goTo("/contact")} className="hover:text-[#44d62c] cursor-pointer transition-colors">Contact Us</li>
-                </ul>
-                <ul className="space-y-4 text-sm font-medium">
-                  <li onClick={() => goTo("/Help")} className="hover:text-[#44d62c] cursor-pointer transition-colors">Help Center</li>
-                  <li onClick={() => goTo("/FAQ")} className="hover:text-[#44d62c] cursor-pointer transition-colors">FAQ</li>
-                  <li onClick={() => goTo("/ReturnRefunds")} className="hover:text-[#44d62c] cursor-pointer transition-colors">Returns & Refunds</li>
-                </ul>
-              </div>
+            <div>
+              <p className="text-zinc-500 text-xs font-bold tracking-widest mb-6 uppercase">Support</p>
+              <ul className="space-y-4">
+                <li onClick={() => handleNavigation("/support")} className="text-gray-300 hover:text-[#44d62c] cursor-pointer">All Support</li>
+                <li onClick={() => handleNavigation("/faq")} className="text-gray-300 hover:text-[#44d62c] cursor-pointer">FAQ</li>
+                <li onClick={() => handleNavigation("/returns")} className="text-gray-300 hover:text-[#44d62c] cursor-pointer">Returns & Refunds</li>
+              </ul>
             </div>
-
           </div>
         </div>
       )}

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
-  const navigate = useNavigate();
+  // We no longer need handleFooterNavigation or useNavigate 
+  // because App.jsx handles the scroll-to-top globally!
 
   return (
     <footer className="bg-black text-gray-400 pt-16 pb-8 border-t border-zinc-800">
@@ -21,8 +22,8 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-4 uppercase text-sm tracking-wider">Shop</h4>
             <ul className="space-y-2 text-sm">
-              <li onClick={() => navigate("/store")} className="hover:text-[#44d62c] cursor-pointer transition">Sunbird Stores</li>
-              <li onClick={() => navigate("/store/bulk")} className="hover:text-[#44d62c] cursor-pointer transition">Bulk Order</li>
+              <li><Link to="/shop" className="hover:text-[#44d62c] transition">Sunbird Stores</Link></li>
+              <li><Link to="/shop" className="hover:text-[#44d62c] transition">Bulk Order</Link></li>
             </ul>
           </div>
 
@@ -30,9 +31,9 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-4 uppercase text-sm tracking-wider">Support</h4>
             <ul className="space-y-2 text-sm">
-              <li onClick={() => navigate("/help")} className="hover:text-[#44d62c] cursor-pointer transition">Get Help</li>
-              <li onClick={() => navigate("/warranty")} className="hover:text-[#44d62c] cursor-pointer transition">Registration & Warranty</li>
-              <li onClick={() => navigate("/support")} className="hover:text-[#44d62c] cursor-pointer transition">Sunbird Support</li>
+              <li><Link to="/help" className="hover:text-[#44d62c] transition">Get Help</Link></li>
+              <li><Link to="/warranty" className="hover:text-[#44d62c] transition">Registration & Warranty</Link></li>
+              <li><Link to="/support" className="hover:text-[#44d62c] transition">Sunbird Support</Link></li>
             </ul>
           </div>
 
@@ -40,21 +41,24 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-4 uppercase text-sm tracking-wider">Company</h4>
             <ul className="space-y-2 text-sm">
-              <li onClick={() => navigate("/about")} className="hover:text-[#44d62c] cursor-pointer transition">About Us</li>
-              <li onClick={() => navigate("/careers")} className="hover:text-[#44d62c] cursor-pointer transition">Careers</li>
-              <li onClick={() => navigate("/contact")} className="hover:text-[#44d62c] cursor-pointer transition">Contact Us</li>
+              <li><Link to="/about" className="hover:text-[#44d62c] transition">About Us</Link></li>
+              <li><Link to="/careers" className="hover:text-[#44d62c] transition">Careers</Link></li>
+              <li><Link to="/contact" className="hover:text-[#44d62c] transition">Contact Us</Link></li>
             </ul>
           </div>
 
-          {/* FOLLOW US - Social Icons */}
+          {/* FOLLOW US */}
           <div>
             <h4 className="text-white font-semibold mb-4 uppercase text-sm tracking-wider">Follow Us</h4>
             <div className="flex flex-wrap gap-3">
+              <Link 
+                to="/follow" 
+                className="w-8 h-8 rounded-full border border-zinc-700 flex items-center justify-center hover:border-[#44d62c] hover:text-[#44d62c] transition"
+              >
+                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 5a5 5 0 100 10 5 5 0 000-10zm6.5-.9a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0z"/></svg>
+              </Link>
               <a href="https://facebook.com" target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full border border-zinc-700 flex items-center justify-center hover:border-[#44d62c] hover:text-[#44d62c] transition">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.6 9.9v-7h-2.4v-3h2.4V9.8c0-2.4 1.4-3.8 3.6-3.8 1 0 2 .2 2 .2v2.3h-1.1c-1.1 0-1.4.7-1.4 1.4V12h2.5l-.4 3h-2.1v7A10 10 0 0022 12z"/></svg>
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full border border-zinc-700 flex items-center justify-center hover:border-[#44d62c] hover:text-[#44d62c] transition">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 5a5 5 0 100 10 5 5 0 000-10zm6.5-.9a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0z"/></svg>
               </a>
             </div>
           </div>
@@ -62,13 +66,21 @@ const Footer = () => {
 
         {/* BOTTOM FOOTER */}
         <div className="mt-8 flex flex-col md:flex-row items-center justify-between text-[12px] text-zinc-500 gap-4">
-          <p>© 2025 Sunbird Inc. All rights reserved.</p>
-          <div className="flex gap-4 uppercase">
-            <Link to="/legal" className="hover:text-white transition">Legal Terms</Link>
-            <span>|</span>
-            <Link to="/privacy" className="hover:text-white transition">Privacy Policy</Link>
-          </div>
-        </div>
+  
+  {/* Left Side: Stacked text */}
+  <div className="flex flex-col items-center md:items-start">
+    <p>Powered by Word Lane Tech</p>
+    <p>© SunBird 2025 All Rights Reserved.</p>
+  </div>
+
+  {/* Right Side: Links */}
+  <div className="flex gap-4 uppercase">
+    <Link to="/legal" className="hover:text-white transition">Legal Terms</Link>
+    <span>|</span>
+    <Link to="/privacy" className="hover:text-white transition">Privacy Policy</Link>
+  </div>
+  
+</div>
       </div>
     </footer>
   );

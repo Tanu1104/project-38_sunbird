@@ -22,7 +22,7 @@ body {
    GLOBAL SECTIONS
 ======================= */
 .section {
-  padding: 6rem 1.5rem;
+  padding: 3rem 1.5rem;
   background-color: #060125;
 }
 
@@ -31,11 +31,11 @@ body {
   font-weight: 900;
   letter-spacing: -0.04em;
   margin-bottom: 3rem;
-  color: #fff;
+  color: #44d62c;
 }
 
 .section-subtitle {
-  font-size: 0.75rem;
+  font-size: 1rem;
   letter-spacing: 0.4em;
   text-transform: uppercase;
   color: #9ca3af;
@@ -47,9 +47,9 @@ body {
 ======================= */
 .horizontal-scroll {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   overflow-x: auto;
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
 }
 
 .horizontal-scroll::-webkit-scrollbar {
@@ -76,7 +76,7 @@ body {
 
 /* Image inside product card */
 .product-image {
-  height: 140px;
+  height: 110px;
   width: auto;
   max-width: 100%;
   object-fit: contain;
