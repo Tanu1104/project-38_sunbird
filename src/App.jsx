@@ -41,29 +41,7 @@ const Home = () => {
       <HeroSection />
 
       <div className="max-w-7xl mx-auto px-6">
-        <section className="py-16">
-          <h3 className="text-4xl font-black italic text-center mb-12">
-            Explore Categories
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {exploreCategories.slice(0, 4).map(cat => (
-              <CategoryCard key={cat.id} cat={cat} />
-            ))}
-          </div>
-        </section>
-
-        <section className="py-24 border-t border-zinc-900">
-          <h3 className="text-4xl font-black italic text-center text-[#44d62c] mb-12">
-            Latest Products
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {products.slice(0, 4).map(p => (
-              <ProductCard key={p.id} product={p} showButtons />
-            ))}
-          </div>
-        </section>
-
-        <PromoSection />
+      <PromoSection />
       </div>
     </>
   );
