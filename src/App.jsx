@@ -1,8 +1,18 @@
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import React, { useEffect } from "react"; // Added useEffect
 import { Routes, Route, useLocation } from "react-router-dom"; // Added useLocation
 import { categories } from "./data/categories";
 import { products } from "./data/products";
 import "./App.css";
+import Header from "./components/Header";
+import ShopTheLatest from "./components/ShopTheLatest";
+import HeroSection from "./components/HeroSection";
+import PromoSection from "./components/PromoSection";
+import ProductCard from "./components/ProductCard";
+import Footer from "./components/Footer";
+import ContactUs from "./components/ContactUs";
+import FollowUs from "./components/FollowUs";
 
 // Components
 import NavBar from "./components/NavBar";
@@ -47,54 +57,46 @@ const CategoryCard = ({ cat }) => (
 
 const Home = () => {
   return (
-    <>
-      <HeroSection />
-      <ExploreCategories />
-      <ShopByCategory />
-      <ShopProductsPage />
-      <div className="max-w-7xl mx-auto px-6">
-        <PromoSection />
+    <section className="py-16">
+      <div className="text-center mb-16">
+        <h3 className="text-4xl font-black italic mb-4">
+          Explore Categories
+        </h3>
+        <p className="text-lg text-zinc-400 max-w-2xl mx-auto">Discover our wide range of high-fidelity audio products, meticulously engineered for the discerning listener.</p>
+        <p className="text-cyan-400 cursor-pointer mt-4 text-base font-semibold">Learn More</p>
       </div>
-    </>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {filteredCategories.slice(0, showAll ? filteredCategories.length : 4).map(cat => (
+          <CategoryCard key={cat.id} cat={cat} />
+        ))}
+      </div>
+      {!showAll && filteredCategories.length > 4 && (
+        <div className="text-center mt-8">
+          <button onClick={() => setShowAll(true)} className="bg-cyan-500 text-white font-bold uppercase px-6 py-3 rounded">
+            View All
+          </button>
+        </div>
+      )}
+    </section>  
   );
 };
 
-export default function App() {
-  // --- IN-FILE SCROLL TO TOP LOGIC ---
-  const { pathname } = useLocation();
 
-  useEffect(() => {
-    // This will trigger every time the URL path changes
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "instant", // "instant" is usually better for route changes to avoid seeing the scroll
-    });
-  }, [pathname]);
-  // -----------------------------------
+/* ===================== SHOP BY CATEGORY ===================== */
+const ShopByCategory = () => {
+  const [showAll, setShowAll] = React.useState(false);
+  const filteredCategories = categories.filter((cat) => cat.section === "category");
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <NavBar />
-      
-      <Routes>
-        {/* Main Home Route */}
-        <Route path="/" element={<Home />} />
-        
-        {/* Functional Routes */}
-        <Route path="/shop" element={<ShopTheLatest />} />
-        <Route path="/support" element={<AllSupport />} />
-        <Route path="/faq" element={<FAQ />} />
-        <Route path="/help" element={<Help />} />
-        <Route path="/returns" element={<ReturnRefunds />} />
-        <Route path="/contact" element={<ContactUs />} />
-        <Route path="/warranty" element={<Warranty />} />
-        <Route path="/follow" element={<FollowUs />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/categories" element={<ExploreCategories />} />
-        {/* Legal & Info */}
-        <Route path="/legal" element={<div className="pt-40 text-center text-2xl font-bold">Legal Terms Content</div>} />
-        <Route path="/privacy" element={<div className="pt-40 text-center text-2xl font-bold">Privacy Policy Content</div>} />
+    <section className="py-24 px-6 lg:px-20">
+      <div className="text-center mb-16">
+        <h3 className="text-4xl font-black italic mb-4">
+          Shop by Category
+        </h3>
+        <p className="text-lg text-zinc-400 max-w-2xl mx-auto">From immersive headphones to portable speakers, find the perfect audio gear to suit your lifestyle.</p>
+        <p className="text-cyan-400 cursor-pointer mt-4 text-base font-semibold">Learn More</p>
+      </div>
 
         {/* 404 Fallback */}
         <Route path="*" element={<div className="pt-40 text-center text-2xl font-bold">Page Under Construction</div>} />
@@ -103,6 +105,29 @@ export default function App() {
      
       </Routes>
 
+export default function App() {
+  return (
+    <div className="min-h-screen w-full bg-[#0f1115] text-white">
+      <Header />
+      <div className="max-w-7xl mx-auto px-6">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <HeroSection />
+                <CategorySpotlight />
+                <ShopByCategory />
+                <Products />
+                <PromoSection />
+              </>
+            }
+          />
+          <Route path="/shop" element={<ShopTheLatest />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/follow" element={<FollowUs />} />
+        </Routes>
+      </div>
       <Footer />
     </div>
   );
