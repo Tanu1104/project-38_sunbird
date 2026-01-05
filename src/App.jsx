@@ -1,67 +1,65 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { categories } from "./data/categories";
-import { products } from "./data/products";
+
 import "./App.css";
 
-// Components
-import NavBar from "./components/NavBar";
+// Layout
+import Header from "./components/Header";
 import Footer from "./components/Footer";
+import NavBar from "./components/NavBar";
+
+// Sections
 import HeroSection from "./components/HeroSection";
 import PromoSection from "./components/PromoSection";
-import ProductCard from "./components/ProductCard";
 import ShopTheLatest from "./components/ShopTheLatest";
 import ContactUs from "./components/ContactUs";
 import FollowUs from "./components/FollowUs";
 
 // Pages
-import Warranty from "./pages/Warranty";
-import AllSupport from "./pages/AllSupport";
-
-const CategoryCard = ({ cat }) => (
-  <div className="text-center group cursor-pointer">
-    <div className="aspect-[3/4] overflow-hidden rounded-xl bg-zinc-900 border border-zinc-800">
-      <img
-        src={cat.icon}
-        alt={cat.name}
-        className="w-full h-full object-cover group-hover:scale-110 transition"
-      />
-    </div>
-    <h4 className="mt-4 font-bold uppercase group-hover:text-[#44d62c]">
-      {cat.name}
-    </h4>
-  </div>
-);
-
-const Home = () => {
-  const exploreCategories = categories.filter(c => c.section === "explore");
-
-  return (
-    <>
-      <HeroSection />
-
-      <div className="max-w-7xl mx-auto px-6">
-      <PromoSection />
-      </div>
-    </>
-  );
-};
+import ShopByCategoryPage from "./components/ShopByCategoryPage";
+import ShopProductsPage from "./components/ShopProductPage";
+import Login from "./Profile/login&signup";
+import Signup from "./Profile/Signup";
 
 export default function App() {
   return (
-    <>
+    <div className="min-h-screen w-full bg-[#0f1115] text-white">
+      <Header />
       <NavBar />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/shop" element={<ShopTheLatest />} />
-        <Route path="/contact" element={<ContactUs />} />
-        <Route path="/follow" element={<FollowUs />} />
-        <Route path="/warranty" element={<Warranty />} />
-        <Route path="/support" element={<AllSupport />} />
-      </Routes>
+      <div className="max-w-7xl mx-auto px-6">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <HeroSection />
+                <ShopByCategoryPage />
+                <PromoSection />
+              </>
+            }
+          />
+
+          <Route path="/shop" element={<ShopTheLatest />} />
+          <Route path="/products/:category" element={<ShopProductsPage />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/follow" element={<FollowUs />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+
+          {/* Fallback */}
+          <Route
+            path="*"
+            element={
+              <div className="pt-40 text-center text-2xl font-bold">
+                Page Under Construction
+              </div>
+            }
+          />
+        </Routes>
+      </div>
 
       <Footer />
-    </>
+    </div>
   );
 }
