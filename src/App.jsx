@@ -37,6 +37,9 @@ import ExploreCategories from "./components/ExploreCategories";
 import ShopByCategory from "./components/ShopByCategoryPage";
 import ShopProductsPage from "./components/ShopProductPage";
 
+
+import Login from "./Profile/login&signup";
+import Signup from "./Profile/Signup";
 const CategoryCard = ({ cat }) => (
   <div className="text-center group cursor-pointer">
     <div className="aspect-[3/4] overflow-hidden rounded-xl bg-zinc-900 border border-zinc-800">
@@ -95,44 +98,12 @@ const ShopByCategory = () => {
         <p className="text-cyan-400 cursor-pointer mt-4 text-base font-semibold">Learn More</p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {filteredCategories.slice(0, showAll ? filteredCategories.length : 4).map((cat) => (
-          <CategoryCard key={cat.id} cat={cat} />
-        ))}
-      </div>
-      {!showAll && filteredCategories.length > 4 && (
-        <div className="text-center mt-8">
-          <button onClick={() => setShowAll(true)} className="bg-cyan-500 text-white font-bold uppercase px-6 py-3 rounded">
-            View All
-          </button>
-        </div>
-      )}
-    </section>
-  );
-};
-
-/* ===================== SHOP PRODUCTS ===================== */
-const Products = () => {
-  const [showAll, setShowAll] = React.useState(false);
-
-  return (
-    <section className="py-24 px-6 lg:px-20">
-      <div className="text-center mb-16">
-        <h3 className="text-4xl font-black italic mb-4">
-          Shop Products
-        </h3>
-        <p className="text-lg text-zinc-400 max-w-2xl mx-auto">Explore our newest collection of cutting-edge audio devices, designed for premium sound and comfort.</p>
-        <p className="text-cyan-400 cursor-pointer mt-4 text-base font-semibold">Learn More</p>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {products.slice(0, showAll ? products.length : 4).map((product) => (
-          <ProductCard key={product.id} product={product} showButtons={true} />
-        ))}
-      </div>
-    </>
-  );
-};
+        {/* 404 Fallback */}
+        <Route path="*" element={<div className="pt-40 text-center text-2xl font-bold">Page Under Construction</div>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+     
+      </Routes>
 
 export default function App() {
   return (
