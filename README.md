@@ -1,18 +1,40 @@
-# React + Vite
+# Sunbird Web Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+Sunbird is a frontend web application developed during my internship, focused on building a modern, responsive, and scalable user interface using React and Vite. The project involved converting functional requirements into reusable UI components and ensuring smooth user interactions.
 
-Currently, two official plugins are available:
+## Tech Stack
+- React
+- JavaScript
+- Vite
+- HTML
+- CSS
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- Component-based UI architecture
+- Responsive design for multiple screen sizes
+- Dynamic rendering of UI elements
+- Clean and modular project structure
+- Fast development and build setup using Vite
 
-## React Compiler
+## My Contribution
+- Actively worked on frontend development using React
+- Built and structured reusable React components
+- Implemented UI logic and state handling
+- Integrated styles and ensured responsive layouts
+- Debugged UI issues and improved overall user experience
+- Collaborated with team members using GitHub version control
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Team Collaboration
+- Worked in a collaborative environment with multiple contributors
+- Followed proper GitHub workflow for commits and updates
+- Participated in code reviews and task-based development
 
-Note: This will impact Vite dev & build performances.
+## Learnings
+- Real-world React project structure
+- Working with Vite for optimized development
+- Team collaboration and version control practices
+- Writing clean and maintainable frontend code
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Status
+Internship Project – Completed
