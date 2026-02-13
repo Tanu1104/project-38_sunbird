@@ -1,30 +1,46 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { categories } from "../data/categories";
 
 const CategoryCard = ({ cat, index }) => {
   const [isLiked, setIsLiked] = useState(false);
+  const navigate = useNavigate();
+
+  const handleBuyNow = (e) => {
+    e.stopPropagation();
+    // In a real app, you'd add to cart context first
+    navigate("/checkout");
+  };
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation();
+    // Trigger your cart logic here
+    alert(`${cat.name} added to cart!`);
+  };
 
   return (
     <div 
       className="text-center group cursor-pointer animate-in"
       style={{ animationDelay: `${index * 100}ms` }}
     >
-      <div className="relative">
-        <div className="image-inner aspect-[3/4] overflow-hidden rounded-xl flex items-center justify-center">
+      <div className="relative overflow-hidden rounded-xl">
+        {/* Image Container */}
+        <div className="image-inner aspect-[3/4] flex items-center justify-center bg-zinc-900">
           <img
             src={cat.icon}
             alt={cat.name}
-            className="w-full h-full object-cover card-hover transition-transform duration-500"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
         </div>
 
+        {/* Top Actions (Wishlist) */}
         <button
           onClick={(e) => {
             e.stopPropagation();
             setIsLiked(!isLiked);
           }}
-          className="absolute top-3 right-3 bg-white/10 backdrop-blur-md p-2 rounded-full 
-                     opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110"
+          className="absolute top-3 right-3 z-20 bg-black/40 backdrop-blur-md p-2 rounded-full 
+                     opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 border border-white/10"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -41,6 +57,27 @@ const CategoryCard = ({ cat, index }) => {
             />
           </svg>
         </button>
+
+        {/* Bottom Actions (Buy/Cart Overlay) */}
+        <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-10">
+          <div className="flex flex-col gap-2">
+            <button 
+              onClick={handleAddToCart}
+              className="w-full py-2.5 bg-white/10 backdrop-blur-xl border border-white/20 text-white text-xs font-bold uppercase tracking-widest rounded-lg hover:bg-white hover:text-black transition-all"
+            >
+              Add to Cart
+            </button>
+            <button 
+              onClick={handleBuyNow}
+              className="w-full py-2.5 bg-[#44d62c] text-black text-xs font-black uppercase tracking-widest rounded-lg hover:bg-white transition-all shadow-lg"
+            >
+              Buy Now
+            </button>
+          </div>
+        </div>
+
+        {/* Subtle Dark Gradient for better button visibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
 
       <h4 className="mt-4 text-lg font-bold uppercase tracking-widest group-hover:text-[#44d62c] transition-colors">
@@ -57,16 +94,17 @@ export default function ExploreCategories() {
     (cat) => cat.section === "explore"
   );
 
-  // Determine which items to show: first 4 or all of them
   const visibleCategories = showAll ? filteredCategories : filteredCategories.slice(0, 4);
 
   return (
-    <section className="section py-24 bg-[#011222]">
+    <section className="py-24 bg-[#0f1115]">
       <div className="max-w-7xl mx-auto px-6">
-        <p className="section-subtitle text-center">Discover the Collection</p>
-        <h2 className="section-title text-center text-white italic uppercase">
-          Explore Categories
-        </h2>
+        <div className="mb-12">
+          <p className="text-[#44d62c] font-mono text-sm uppercase tracking-widest mb-2">Discover the Collection</p>
+          <h2 className="text-4xl md:text-5xl font-black italic uppercase text-white tracking-tighter">
+            Explore Categories
+          </h2>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {visibleCategories.map((cat, index) => (
@@ -74,21 +112,13 @@ export default function ExploreCategories() {
           ))}
         </div>
 
-        {/* Conditional "View All" / "View Less" Button */}
         {filteredCategories.length > 4 && (
           <div className="mt-16 flex justify-center">
             <button 
               onClick={() => setShowAll(!showAll)}
-              className="group relative px-8 py-3 bg-transparent border border-[#44d62c] rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(68,214,44,0.4)]"
+              className="px-10 py-3 border-2 border-zinc-800 text-white font-bold uppercase tracking-widest text-sm hover:border-[#44d62c] hover:text-[#44d62c] transition-all rounded-full"
             >
-              <span className="relative z-10 text-[#44d62c] font-bold uppercase tracking-widest text-sm group-hover:text-black transition-colors duration-300">
-                {showAll ? "View Less" : "View All Categories"}
-              </span>
-              <div 
-                className={`absolute inset-0 bg-[#44d62c] transition-transform duration-300 origin-left ${
-                  showAll ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                }`}
-              ></div>
+              {showAll ? "View Less" : "View All Categories"}
             </button>
           </div>
         )}
