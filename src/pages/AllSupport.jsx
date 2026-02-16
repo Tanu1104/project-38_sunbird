@@ -10,7 +10,7 @@ const AllSupport = () => {
         </h1>
 
         <p className="text-gray-400 mb-10">
-          Welcome to the Sunbird Support Center. Get help, guides, FAQs, and
+          Welcome to the Inity Support Center. Get help, guides, FAQs, and
           after-sales services all in one place.
         </p>
 
@@ -34,7 +34,7 @@ const AllSupport = () => {
               FAQs
             </h3>
             <p className="text-gray-400 mb-4">
-              Browse frequently asked questions about Sunbird products.
+              Browse frequently asked questions about Inity products.
             </p>
             <button className="px-4 py-2 bg-white text-black font-semibold rounded hover:bg-gray-200 transition">
               View FAQs

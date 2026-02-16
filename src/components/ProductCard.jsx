@@ -40,10 +40,10 @@ const ProductCard = ({ product, showButtons = true }) => {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill={isLiked ? "#44d62c" : "none"}
+            fill={isLiked ? "#E10600" : "none"}
             viewBox="0 0 24 24"
             strokeWidth={1.5}
-            stroke={isLiked ? "#44d62c" : "white"}
+            stroke={isLiked ? "#E10600" : "white"}
             className="w-5 h-5 transition-colors duration-300"
           >
             <path
@@ -60,7 +60,7 @@ const ProductCard = ({ product, showButtons = true }) => {
             <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-3 p-4 rounded-xl">
               <button 
                 onClick={handleBuyNow}
-                className="w-full bg-[#44d62c] text-black font-black text-xs uppercase tracking-widest py-3 rounded-lg hover:bg-white transition-colors duration-300"
+                className="w-full bg-[#E10600] text-black font-black text-xs uppercase tracking-widest py-3 rounded-lg hover:bg-white transition-colors duration-300"
               >
                 Buy Now
               </button>
@@ -79,11 +79,11 @@ const ProductCard = ({ product, showButtons = true }) => {
 
       {/* Product Info */}
       <div className="mt-4 px-2">
-        <h4 className="text-sm font-bold uppercase tracking-tight group-hover:text-[#44d62c] transition-colors truncate">
+        <h4 className="text-sm font-bold uppercase tracking-tight group-hover:text-[#E10600] transition-colors truncate">
           {product.name}
         </h4>
         <div className="flex justify-center items-center gap-3 mt-1">
-           <p className="font-mono text-[#44d62c] font-bold">₹{product.price}</p>
+           <p className="font-mono text-[#E10600] font-bold">₹{product.price}</p>
            {product.oldPrice && (
              <p className="text-zinc-500 line-through text-xs font-mono">₹{product.oldPrice}</p>
            )}

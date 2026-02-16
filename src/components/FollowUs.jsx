@@ -8,9 +8,9 @@ const FollowUs = () => {
         Stay updated with our latest news and products on our social media channels.
       </p>
       <div className="flex justify-center gap-8">
-        <a href="#" className="text-cyan-400 hover:text-white">Facebook</a>
-        <a href="#" className="text-cyan-400 hover:text-white">Twitter</a>
-        <a href="#" className="text-cyan-400 hover:text-white">Instagram</a>
+        <a href="#" className="text-[#E10600] hover:text-white">Facebook</a>
+        <a href="#" className="text-[#E10600] hover:text-white">Twitter</a>
+        <a href="#" className="text-[#E10600] hover:text-white">Instagram</a>
       </div>
     </div>
   );

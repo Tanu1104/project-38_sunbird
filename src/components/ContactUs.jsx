@@ -19,7 +19,7 @@ const ContactUs = () => {
               <input
                 type="text"
                 id="name"
-                className="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-cyan-500 focus:border-cyan-500"
+                className="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-[#E10600] focus:border-[#E10600]"
               />
             </div>
             <div>
@@ -29,7 +29,7 @@ const ContactUs = () => {
               <input
                 type="email"
                 id="email"
-                className="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-cyan-500 focus:border-cyan-500"
+                className="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-[#E10600] focus:border-[#E10600]"
               />
             </div>
             <div>
@@ -39,13 +39,13 @@ const ContactUs = () => {
               <textarea
                 id="message"
                 rows="4"
-                className="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-cyan-500 focus:border-cyan-500"
+                className="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-[#E10600] focus:border-[#E10600]"
               ></textarea>
             </div>
             <div>
               <button
                 type="submit"
-                className="w-full bg-cyan-500 text-white font-bold uppercase px-6 py-3 rounded"
+                className="w-full bg-[#E10600] hover:bg-[#B30500] text-black font-bold py-3 rounded-lg transition"
               >
                 Send Message
               </button>
@@ -55,10 +55,8 @@ const ContactUs = () => {
         <div className="lg:w-1/2">
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-bold">Email Us</h3>
-              <p className="text-zinc-400">
-                <a href="mailto:support@sunbird.com" className="text-cyan-400">support@sunbird.com</a>
-              </p>
+              <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-1">Email Support</p>
+              <a href="mailto:support@inity.com" className="text-[#E10600]">support@inity.com</a>
             </div>
             <div>
               <h3 className="text-lg font-bold">Call Us</h3>

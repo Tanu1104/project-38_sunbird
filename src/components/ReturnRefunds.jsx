@@ -11,12 +11,12 @@ const ReturnsRefund = () => {
 
         <div className="space-y-8">
           <div className="border border-gray-800 p-6 rounded-lg">
-            <h2 className="text-2xl font-semibold mb-4 text-green-500">Return Eligibility</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#E10600]">Return Eligibility</h2>
             <div className="space-y-4">
               <div className="bg-gray-900 p-4 rounded">
                 <h3 className="text-lg font-medium mb-2">30-Day Return Window</h3>
                 <p className="text-gray-400">
-                  You may return any Sunbird product within 30 days of delivery for a full refund or exchange. 
+                  You may return any Inity product within 30 days of delivery for a full refund or exchange. 
                   Products must be in original condition with all accessories and packaging.
                 </p>
               </div>
@@ -33,25 +33,25 @@ const ReturnsRefund = () => {
           </div>
 
           <div className="border border-gray-800 p-6 rounded-lg">
-            <h2 className="text-2xl font-semibold mb-4 text-green-500">Refund Process</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#E10600]">Refund Process</h2>
             <div className="space-y-6">
               <div className="grid md:grid-cols-3 gap-4">
                 <div className="bg-gray-900 p-4 rounded text-center">
-                  <div className="text-3xl font-bold text-green-500 mb-2">1</div>
+                  <div className="text-3xl font-bold text-[#E10600] mb-2">1</div>
                   <h3 className="font-medium mb-2">Initiate Return</h3>
                   <p className="text-gray-400 text-sm">
                     Contact support or use our online portal to request a return authorization
                   </p>
                 </div>
                 <div className="bg-gray-900 p-4 rounded text-center">
-                  <div className="text-3xl font-bold text-green-500 mb-2">2</div>
+                  <div className="text-3xl font-bold text-[#E10600] mb-2">2</div>
                   <h3 className="font-medium mb-2">Ship Product</h3>
                   <p className="text-gray-400 text-sm">
                     Use provided shipping label to return product to our warehouse
                   </p>
                 </div>
                 <div className="bg-gray-900 p-4 rounded text-center">
-                  <div className="text-3xl font-bold text-green-500 mb-2">3</div>
+                  <div className="text-3xl font-bold text-[#E10600] mb-2">3</div>
                   <h3 className="font-medium mb-2">Receive Refund</h3>
                   <p className="text-gray-400 text-sm">
                     Refund processed within 5-7 business days after inspection
@@ -68,12 +68,12 @@ const ReturnsRefund = () => {
           </div>
 
           <div className="border border-gray-800 p-6 rounded-lg">
-            <h2 className="text-2xl font-semibold mb-4 text-green-500">Warranty Claims</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#E10600]">Warranty Claims</h2>
             <div className="space-y-4">
               <div className="bg-gray-900 p-4 rounded">
                 <h3 className="text-lg font-medium mb-2">1-Year Limited Warranty</h3>
                 <p className="text-gray-400">
-                  All Sunbird products come with a 1-year warranty covering manufacturing defects. 
+                  All Inity products come with a 1-year warranty covering manufacturing defects. 
                   Warranty claims require proof of purchase and product inspection.
                 </p>
               </div>
@@ -90,14 +90,14 @@ const ReturnsRefund = () => {
           </div>
 
           <div className="border border-gray-800 p-6 rounded-lg">
-            <h2 className="text-2xl font-semibold mb-4 text-green-500">Start a Return</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#E10600]">Start a Return</h2>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-gray-900 p-5 rounded">
                 <h3 className="text-lg font-medium mb-3">Online Portal</h3>
                 <p className="text-gray-400 mb-4">
                   Initiate returns quickly through our self-service portal:
                 </p>
-                <button className="w-full px-4 py-3 bg-green-600 hover:bg-green-700 rounded font-medium">
+                <button className="w-full px-4 py-3 bg-[#E10600] hover:bg-[#B30500] rounded font-medium">
                   Start Return Online
                 </button>
               </div>
@@ -107,8 +107,8 @@ const ReturnsRefund = () => {
                   Need assistance? Our support team can help with your return:
                 </p>
                 <div className="space-y-2">
-                  <p className="text-gray-400">📞 <strong>Phone:</strong> 1-800-SUNBIRD</p>
-                  <p className="text-gray-400">📧 <strong>Email:</strong> returns@sunbird.com</p>
+                  <p className="text-gray-400">📞 <strong>Phone:</strong> 1-800-INITY</p>
+                  <p className="text-gray-400">📧 <strong>Email:</strong> returns@inity.com</p>
                   <p className="text-gray-400 text-sm">Available: Mon-Fri, 9 AM - 6 PM EST</p>
                 </div>
               </div>

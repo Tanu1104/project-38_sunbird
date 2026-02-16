@@ -10,7 +10,7 @@ const Warranty = () => {
         </h1>
 
         <p className="text-gray-400 mb-10">
-          Register your Sunbird product to activate warranty benefits and
+          Register your Inity product to activate warranty benefits and
           access exclusive services.
         </p>
 
@@ -21,7 +21,7 @@ const Warranty = () => {
               Product Registration
             </h3>
             <p className="text-gray-400 mb-4">
-              Register your Sunbird device using the product serial number.
+              Register your Inity device using the product serial number.
             </p>
             <button className="px-4 py-2 bg-white text-black font-semibold rounded hover:bg-gray-200 transition">
               Register Product

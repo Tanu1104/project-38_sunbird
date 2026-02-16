@@ -45,10 +45,10 @@ const CategoryCard = ({ cat, index }) => {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill={isLiked ? "#44d62c" : "none"}
+            fill={isLiked ? "#E10600" : "none"}
             viewBox="0 0 24 24"
             strokeWidth={1.5}
-            stroke={isLiked ? "#44d62c" : "white"}
+            stroke={isLiked ? "#E10600" : "white"}
             className="w-5 h-5 transition-colors duration-300"
           >
             <path
@@ -70,7 +70,7 @@ const CategoryCard = ({ cat, index }) => {
             </button>
             <button 
               onClick={handleBuyNow}
-              className="w-full py-2.5 bg-[#44d62c] text-black text-xs font-black uppercase tracking-widest rounded-lg hover:bg-white transition-all shadow-lg shadow-[#44d62c]/20"
+              className="w-full py-2.5 bg-[#E10600] text-black text-xs font-black uppercase tracking-widest rounded-lg hover:bg-white transition-all shadow-lg shadow-[#E10600]/20"
             >
               Buy Now
             </button>
@@ -81,7 +81,7 @@ const CategoryCard = ({ cat, index }) => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       </div>
 
-      <h4 className="mt-4 text-lg font-bold uppercase tracking-wider group-hover:text-[#44d62c] transition-colors">
+      <h4 className="mt-4 text-lg font-bold uppercase tracking-wider group-hover:text-[#E10600] transition-colors">
         {cat.name}
       </h4>
     </div>
@@ -104,7 +104,7 @@ export default function ShopByCategoryPage() {
       <div className="max-w-7xl mx-auto px-6">
         <p className="section-subtitle text-center">Premium Selection</p>
         <h2 className="section-title text-center text-white italic uppercase">
-          Shop by <span className="text-[#44d62c]">Category</span>
+          Shop by <span className="text-[#E10600]">Category</span>
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -117,13 +117,13 @@ export default function ShopByCategoryPage() {
           <div className="mt-16 flex justify-center">
             <button 
               onClick={() => setIsExpanded(!isExpanded)}
-              className="group relative px-10 py-3 bg-transparent border border-[#44d62c] rounded-full overflow-hidden transition-all duration-300"
+              className="group relative px-10 py-3 bg-transparent border border-[#E10600] rounded-full overflow-hidden transition-all duration-300"
             >
-              <span className="relative z-10 text-[#44d62c] font-bold uppercase tracking-widest text-sm group-hover:text-black transition-colors duration-300">
+              <span className="relative z-10 text-[#E10600] font-bold uppercase tracking-widest text-sm group-hover:text-black transition-colors duration-300">
                 {isExpanded ? "View Less" : "View All Categories"}
               </span>
               <div 
-                className={`absolute inset-0 bg-[#44d62c] transition-transform duration-300 origin-left ${
+                className={`absolute inset-0 bg-[#E10600] transition-transform duration-300 origin-left ${
                   isExpanded ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                 }`}
               ></div>

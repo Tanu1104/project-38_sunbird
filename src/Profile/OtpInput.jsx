@@ -15,7 +15,7 @@ const OtpInput = ({ otp, setOtp }) => {
           maxLength={1}
           value={otp[i] || ""}
           onChange={(e) => handleChange(e.target.value, i)}
-          className="w-12 h-12 text-center text-lg bg-black border border-gray-700 rounded-lg outline-none focus:border-cyan-400"
+          className="w-12 h-12 text-center text-lg bg-black border border-gray-700 rounded-lg outline-none focus:border-[#E10600]"
         />
       ))}
     </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import logo from "../assets/sunbird_logo.png";
+import logo from "../assets/inity_logo.png";
 
 const NavBar = () => {
   const [openStore, setOpenStore] = useState(false);
@@ -51,8 +51,8 @@ const NavBar = () => {
             <input 
               ref={searchInputRef}
               type="text" 
-              placeholder="SEARCH SUNBIRD PRODUCTS..." 
-              className="w-full bg-transparent border-b-2 border-zinc-800 py-4 text-3xl font-bold uppercase italic outline-none focus:border-[#44d62c] transition-colors tracking-tighter text-white"
+              placeholder="SEARCH INITY PRODUCTS..." 
+              className="w-full bg-transparent border-b-2 border-zinc-800 py-4 text-3xl font-bold uppercase italic outline-none focus:border-[#E10600] transition-colors tracking-tighter text-white"
             />
             <p className="mt-4 text-zinc-500 text-sm font-bold uppercase tracking-widest">Press ESC to close</p>
           </div>
@@ -67,7 +67,7 @@ const NavBar = () => {
             {location.pathname !== "/" && (
               <button 
                 onClick={() => navigate(-1)} 
-                className="p-1 text-zinc-400 hover:text-[#44d62c] transition-colors"
+                className="p-1 text-zinc-400 hover:text-[#E10600] transition-colors"
                 title="Go Back"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
@@ -76,7 +76,7 @@ const NavBar = () => {
               </button>
             )}
             <div onClick={() => handleNavigation("/")} className="cursor-pointer group">
-              <img src={logo} alt="Sunbird" className="h-9 w-auto object-contain transition-transform group-hover:scale-105" />
+              <img src={logo} alt="Inity" className="h-9 w-auto object-contain transition-transform group-hover:scale-105" />
             </div>
           </div>
 
@@ -84,14 +84,14 @@ const NavBar = () => {
           <div className="flex items-center gap-6">
             
             {/* 1. SEARCH */}
-            <button onClick={() => setShowSearch(true)} className="text-gray-300 hover:text-[#44d62c] transition-colors p-1" title="Search">
+            <button onClick={() => setShowSearch(true)} className="text-gray-300 hover:text-[#E10600] transition-colors p-1" title="Search">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
               </svg>
             </button>
 
             {/* 2. HOME */}
-            <button onClick={() => handleNavigation("/")} className="text-gray-300 hover:text-[#44d62c] transition-colors p-1" title="Home">
+            <button onClick={() => handleNavigation("/")} className="text-gray-300 hover:text-[#E10600] transition-colors p-1" title="Home">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                 <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
                 <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.432z" />
@@ -102,7 +102,7 @@ const NavBar = () => {
             <div ref={storeRef} className="relative flex items-center">
               <button 
                 onClick={() => { setOpenStore(!openStore); setOpenProfile(false); }} 
-                className={`transition-colors p-1 ${openStore ? "text-[#44d62c]" : "text-gray-300 hover:text-[#44d62c]"}`}
+                className={`transition-colors p-1 ${openStore ? "text-[#E10600]" : "text-gray-300 hover:text-[#E10600]"}`}
                 title="Store"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
@@ -115,14 +115,14 @@ const NavBar = () => {
                     <div>
                       <p className="text-zinc-500 text-xs font-bold tracking-widest mb-6 uppercase">Collection</p>
                       <ul className="space-y-4">
-                        <li onClick={() => handleNavigation("/shop")} className="text-gray-300 hover:text-[#44d62c] cursor-pointer transition-colors">Shop All</li>
-                        <li onClick={() => handleNavigation("/products/new")} className="text-gray-300 hover:text-[#44d62c] cursor-pointer">New Arrivals</li>
+                        <li onClick={() => handleNavigation("/shop")} className="text-gray-300 hover:text-[#E10600] cursor-pointer transition-colors">Shop All</li>
+                        <li onClick={() => handleNavigation("/products/new")} className="text-gray-300 hover:text-[#E10600] cursor-pointer">New Arrivals</li>
                       </ul>
                     </div>
                     <div>
                       <p className="text-zinc-500 text-xs font-bold tracking-widest mb-6 uppercase">Help</p>
                       <ul className="space-y-4">
-                        <li onClick={() => handleNavigation("/contact")} className="text-gray-300 hover:text-[#44d62c] cursor-pointer">Contact Us</li>
+                        <li onClick={() => handleNavigation("/contact")} className="text-gray-300 hover:text-[#E10600] cursor-pointer">Contact Us</li>
                       </ul>
                     </div>
                   </div>
@@ -134,7 +134,7 @@ const NavBar = () => {
             <div ref={profileRef} className="relative flex items-center" onMouseEnter={() => setOpenProfile(true)}>
               <div 
                 onClick={() => setOpenProfile(!openProfile)}
-                className={`cursor-pointer transition-colors p-1 ${openProfile ? "text-[#44d62c]" : "text-gray-300 hover:text-[#44d62c]"}`}
+                className={`cursor-pointer transition-colors p-1 ${openProfile ? "text-[#E10600]" : "text-gray-300 hover:text-[#E10600]"}`}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
@@ -154,7 +154,7 @@ const NavBar = () => {
                   <hr className="border-gray-100" />
                   <ul className="py-2 text-sm text-gray-700">
                     <li onClick={() => handleNavigation("/edit-profile")} className="px-5 py-2 hover:font-bold cursor-pointer hover:bg-gray-50">Edit Profile</li>
-                    <li onClick={() => handleNavigation("/cart")} className="px-5 py-2 hover:font-bold cursor-pointer hover:bg-gray-50 flex justify-between">My Cart <span className="text-[#44d62c]">[1]</span></li>
+                    <li onClick={() => handleNavigation("/cart")} className="px-5 py-2 hover:font-bold cursor-pointer hover:bg-gray-50 flex justify-between">My Cart <span className="text-[#E10600]">[1]</span></li>
                     <li onClick={() => handleNavigation("/orders")} className="px-5 py-2 hover:font-bold cursor-pointer hover:bg-gray-50">Orders</li>
                     <li onClick={() => handleNavigation("/wishlist")} className="px-5 py-2 hover:font-bold cursor-pointer hover:bg-gray-50">Wishlist</li>
                   </ul>
@@ -163,7 +163,7 @@ const NavBar = () => {
             </div>
 
             {/* 5. CART */}
-            <button onClick={() => handleNavigation("/cart")} className="text-gray-300 hover:text-[#44d62c] transition-colors p-1 cursor-pointer">
+            <button onClick={() => handleNavigation("/cart")} className="text-gray-300 hover:text-[#E10600] transition-colors p-1 cursor-pointer">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z" />
               </svg>

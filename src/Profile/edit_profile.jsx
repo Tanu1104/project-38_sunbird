@@ -30,7 +30,7 @@ const EditProfile = () => {
               <ul className="space-y-3">
                 <li className="flex items-center justify-between">
                   <span className="text-white font-medium">Profile Information</span>
-                  <span className="text-[#44d62c] text-xs font-bold uppercase">Active</span>
+                  <span className="text-[#E10600] text-xs font-bold uppercase">Active</span>
                 </li>
                 <li className="text-zinc-400">Manage Addresses</li>
                 <li className="text-zinc-400">PAN Card Information</li>
@@ -52,7 +52,7 @@ const EditProfile = () => {
             <div className="bg-zinc-900/40 border border-zinc-800 rounded-sm p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl font-bold">Personal Information</h2>
-                <button className="text-[#44d62c] font-bold hover:underline">Edit</button>
+                <button className="text-[#E10600] font-bold hover:underline">Edit</button>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -84,7 +84,7 @@ const EditProfile = () => {
             <div className="bg-zinc-900/40 border border-zinc-800 rounded-sm p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl font-bold">Email Address</h2>
-                <button className="text-[#44d62c] font-bold hover:underline">Edit</button>
+                <button className="text-[#E10600] font-bold hover:underline">Edit</button>
               </div>
               <input disabled placeholder="Not added" value={user.email} className="w-full bg-zinc-800/60 border border-zinc-700 rounded-sm p-3 text-white" />
             </div>
@@ -93,7 +93,7 @@ const EditProfile = () => {
             <div className="bg-zinc-900/40 border border-zinc-800 rounded-sm p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl font-bold">Mobile Number</h2>
-                <button className="text-[#44d62c] font-bold hover:underline">Edit</button>
+                <button className="text-[#E10600] font-bold hover:underline">Edit</button>
               </div>
               <input disabled value={user.mobile} className="w-full bg-zinc-800/60 border border-zinc-700 rounded-sm p-3 text-white" />
             </div>

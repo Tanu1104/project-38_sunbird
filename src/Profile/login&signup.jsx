@@ -47,7 +47,7 @@ const Login = () => {
       <div className="w-full max-w-md bg-[#0f1115] border border-gray-800 rounded-xl p-8 text-white">
 
         <h1 className="text-3xl font-bold text-center mb-6">
-          Login to <span className="text-cyan-400">SUNBIRD</span>
+          Login to <span className="text-[#E10600]">INITY</span>
         </h1>
 
         {/* STEP 1 – MOBILE */}
@@ -62,23 +62,23 @@ const Login = () => {
               placeholder="Enter 10 digit number"
               value={mobile}
               onChange={(e) => setMobile(e.target.value)}
-              className="w-full px-4 py-3 bg-black border border-gray-700 rounded-lg outline-none focus:border-cyan-400"
+              className="w-full px-4 py-3 bg-black border border-gray-700 rounded-lg outline-none focus:border-[#E10600]"
             />
 
             <button
               onClick={sendOtp}
               disabled={loading}
-              className="w-full mt-6 bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 rounded-lg transition"
+              className="w-full mt-6 bg-[#E10600] hover:bg-[#B30500] text-black font-bold py-3 rounded-lg transition"
             >
               {loading ? "Sending OTP..." : "Send OTP"}
             </button>
 
             {/* 🔹 SIGN UP OPTION */}
             <p className="text-center text-sm text-gray-400 mt-6">
-              New to Sunbird?{" "}
+              New to Inity?{" "}
               <span
                 onClick={() => navigate("/signup")}
-                className="text-cyan-400 cursor-pointer hover:underline"
+                className="text-[#E10600] cursor-pointer hover:underline"
               >
                 Create an account
               </span>
@@ -98,31 +98,12 @@ const Login = () => {
             <button
               onClick={verifyOtp}
               disabled={loading}
-              className="w-full mt-6 bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 rounded-lg transition"
+              className="w-full mt-6 bg-[#E10600] hover:bg-[#B30500] text-black font-bold py-3 rounded-lg transition"
             >
-              {loading ? "Verifying..." : "Verify & Login"}
+              {loading ? "Verifying OTP..." : "Verify & Login"}
             </button>
-
-            <button
-              onClick={() => setStep(1)}
-              className="w-full mt-3 text-sm text-gray-400 hover:text-white"
-            >
-              Change mobile number
-            </button>
-
-            {/* OPTIONAL SIGNUP */}
-            <p className="text-center text-xs text-gray-500 mt-4">
-              Don’t have an account?{" "}
-              <span
-                onClick={() => navigate("/signup")}
-                className="text-cyan-400 cursor-pointer hover:underline"
-              >
-                Sign Up
-              </span>
-            </p>
           </>
         )}
-
       </div>
     </div>
   );

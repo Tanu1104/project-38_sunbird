@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const navigate = useNavigate();
 
-  // Mock data - in a real app, this comes from state/context
-  const cartItems = [
-    { id: 1, name: "Sunbird Stealth Buds", price: 4999, image: "/path-to-image", qty: 1 },
-  ];
+  const [cartItems, setCartItems] = useState([
+    { id: 1, name: "Inity Stealth Buds", price: 4999, image: "/path-to-image", qty: 1 },
+    { id: 2, name: "Inity Pulse Headphones", price: 8999, image: "/path-to-image", qty: 1 },
+  ]);
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
 
@@ -26,7 +26,7 @@ const Cart = () => {
                   <div>
                     <h3 className="font-bold text-lg">{item.name}</h3>
                     <p className="text-zinc-400 text-sm">Color: Matte Black</p>
-                    <p className="mt-2 font-mono text-[#44d62c]">₹{item.price}</p>
+                    <p className="mt-2 font-mono text-[#E10600]">₹{item.price}</p>
                   </div>
                   <div className="flex flex-col items-end justify-between">
                     <button className="text-zinc-500 hover:text-red-500 text-xs uppercase font-bold">Remove</button>
@@ -51,7 +51,7 @@ const Cart = () => {
               </div>
               <div className="flex justify-between">
                 <span className="text-zinc-400">Shipping</span>
-                <span className="text-[#44d62c]">FREE</span>
+                <span className="text-[#E10600]">FREE</span>
               </div>
             </div>
             <div className="flex justify-between py-4 text-xl font-bold">
@@ -60,7 +60,7 @@ const Cart = () => {
             </div>
             <button 
               onClick={() => navigate("/checkout")}
-              className="w-full bg-[#44d62c] text-black font-bold py-4 hover:bg-[#38b324] transition-colors uppercase italic"
+              className="w-full bg-[#E10600] text-black font-bold py-4 hover:bg-[#B30500] transition-colors uppercase italic"
             >
               Checkout Now
             </button>

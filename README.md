@@ -1,7 +1,7 @@
-# Sunbird Web Application
+# Inity Web Application
 
 ## Overview
-Sunbird is a frontend web application developed during my internship, focused on building a modern, responsive, and scalable user interface using React and Vite. The project involved converting functional requirements into reusable UI components and ensuring smooth user interactions.
+Inity is a frontend web application developed during my internship, focused on building a modern, responsive, and scalable user interface using React and Vite. The project involved converting functional requirements into reusable UI components and ensuring smooth user interactions.
 
 ## Tech Stack
 - React

@@ -44,10 +44,10 @@ const CategoryCard = ({ cat, index }) => {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill={isLiked ? "#44d62c" : "none"}
+            fill={isLiked ? "#E10600" : "none"}
             viewBox="0 0 24 24"
             strokeWidth={1.5}
-            stroke={isLiked ? "#44d62c" : "white"}
+            stroke={isLiked ? "#E10600" : "white"}
             className="w-5 h-5 transition-colors duration-300"
           >
             <path
@@ -69,7 +69,7 @@ const CategoryCard = ({ cat, index }) => {
             </button>
             <button 
               onClick={handleBuyNow}
-              className="w-full py-2.5 bg-[#44d62c] text-black text-xs font-black uppercase tracking-widest rounded-lg hover:bg-white transition-all shadow-lg"
+              className="w-full py-2.5 bg-[#E10600] text-black text-xs font-black uppercase tracking-widest rounded-lg hover:bg-white transition-all shadow-lg"
             >
               Buy Now
             </button>
@@ -80,7 +80,7 @@ const CategoryCard = ({ cat, index }) => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
 
-      <h4 className="mt-4 text-lg font-bold uppercase tracking-widest group-hover:text-[#44d62c] transition-colors">
+      <h4 className="mt-4 text-lg font-bold uppercase tracking-widest group-hover:text-[#E10600] transition-colors">
         {cat.name}
       </h4>
     </div>
@@ -100,7 +100,7 @@ export default function ExploreCategories() {
     <section className="py-24 bg-[#0f1115]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-12">
-          <p className="text-[#44d62c] font-mono text-sm uppercase tracking-widest mb-2">Discover the Collection</p>
+          <p className="text-[#E10600] font-mono text-sm uppercase tracking-widest mb-2">Discover the Collection</p>
           <h2 className="text-4xl md:text-5xl font-black italic uppercase text-white tracking-tighter">
             Explore Categories
           </h2>
@@ -116,7 +116,7 @@ export default function ExploreCategories() {
           <div className="mt-16 flex justify-center">
             <button 
               onClick={() => setShowAll(!showAll)}
-              className="px-10 py-3 border-2 border-zinc-800 text-white font-bold uppercase tracking-widest text-sm hover:border-[#44d62c] hover:text-[#44d62c] transition-all rounded-full"
+              className="px-10 py-3 border-2 border-zinc-800 text-white font-bold uppercase tracking-widest text-sm hover:border-[#E10600] hover:text-[#E10600] transition-all rounded-full"
             >
               {showAll ? "View Less" : "View All Categories"}
             </button>

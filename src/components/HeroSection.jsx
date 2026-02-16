@@ -31,7 +31,7 @@ const HeroSection = () => {
     },
     { 
       id: 2, 
-      src: "https://images.unsplash.com/photo-1589003077984-894e133dabab?q=80&w=2070", 
+      src: "https://images.unsplash.com/photo-1665672629999-0994c3f052a9?q=80&w=583&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
       path: "/category/speakers", 
       title: "SONIC SPEAKERS", 
       sub: "Fill your room with earth-shattering cinematic bass." 
